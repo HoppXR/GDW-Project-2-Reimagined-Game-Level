@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         else
         {
             // Restore the original height of the player model
-            transform.localScale = new Vector3(2f, 2f, 2f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
             Debug.Log("Standing");
 
             // Restore the original collider size if you're using a BoxCollider2D
