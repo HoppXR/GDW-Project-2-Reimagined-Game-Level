@@ -1,4 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +15,13 @@ public class Player : MonoBehaviour
     public float jumpForce = 5f;
     public float sprintSpeedMultiplier = 10f;
 
+    public float maxHealth = 100f;
+    private float currentHealth;
+
+    private bool isTakingDamage = false;
+
+    [SerializeField] private Image healthBar;
+    
     public static bool isRunning;
 
     bool isGrounded;
@@ -23,6 +34,13 @@ public class Player : MonoBehaviour
         InputManager.Init(this);
         InputManager.SetGameControls();
         rb = GetComponent<Rigidbody2D>();
+        _moveDirection = Vector2.zero;
+
+        //Get the starting health
+        currentHealth = maxHealth;
+
+        //updates the hp bar UI
+        UpdateHealthBar();
     }
 
     // Update is called once per frame
@@ -76,27 +94,22 @@ public class Player : MonoBehaviour
     {
         if (!isCrouch)
         {
-            
-            // Reduce the height of the player model
+            // Reduce the height of the upper and lower halves of kirby
             transform.localScale = new Vector3(1f, 0.5f, 1f);
             Debug.Log("Crouching");
-            // Adjust the collider size if you're using a BoxCollider2D
-            BoxCollider2D collider = GetComponent<BoxCollider2D>();
-            if (collider != null)
-            {
-                collider.size = new Vector2(collider.size.x, collider.size.y * 1f);
-            }
 
             isCrouch = true;
             Debug.Log("Crouch");
         }
         else
         {
-            // Restore the original height of the player model
+            // Restore the original height of the upper and lower halves of kirby
             transform.localScale = new Vector3(1f, 1f, 1f);
             Debug.Log("Standing");
 
-            // Restore the original collider size if you're using a BoxCollider2D
+            isCrouch = false;
+            Debug.Log("Standing");
+
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
             if (collider != null)
             {
@@ -106,4 +119,48 @@ public class Player : MonoBehaviour
             isCrouch = false;
         }
     }
+
+    public void TakeDamage(float damage)
+    {
+        // Disable movement during damage
+        isTakingDamage = true;
+
+        // Subtract damage from current health
+        currentHealth -= damage;
+
+        // Ensure health doesn't go below zero
+        currentHealth = Mathf.Max(currentHealth, 0f);
+
+        // Update health bar UI
+        UpdateHealthBar();
+
+        Debug.Log($"Player took {damage} damage. Remaining health: {currentHealth}");
+
+        // Check if the player is dead
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
+
+        // Enable movement after a short delay
+        StartCoroutine(EnableMovementAfterDelay(1.0f));
+    }
+
+    private void UpdateHealthBar()
+    {
+
+    }
+
+    private void Die()
+    {
+
+    }
+
+    // enable movement after a delay (being hurt)
+    private IEnumerator EnableMovementAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isTakingDamage = false;
+    }
+
 }
