@@ -14,11 +14,14 @@ public class Player : MonoBehaviour
     public float crouch = 5f;
     public float jumpForce = 5f;
     public float sprintSpeedMultiplier = 10f;
-
+    public float pushForce = 5f; // Adjust this value to control the push force
     public float maxHealth = 100f;
-    private float currentHealth;
 
+    private float currentHealth;
     private bool isTakingDamage = false;
+
+    private bool isBlocking = false;
+    private float damageReductionMultiplier = 0.5f;
 
     [SerializeField] private Image healthBar;
     
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     bool isGrounded;
     bool isCrouch;
     bool hasDoubleJumped;
+
 
     // Start is called before the first frame update
     void Start()
@@ -122,6 +126,12 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isTakingDamage || isBlocking)
+        {
+            // If taking damage or blocking, reduce the damage
+            damage *= damageReductionMultiplier;
+        }
+
         // Disable movement during damage
         isTakingDamage = true;
 
@@ -130,6 +140,9 @@ public class Player : MonoBehaviour
 
         // Ensure health doesn't go below zero
         currentHealth = Mathf.Max(currentHealth, 0f);
+
+        //pushes the player a little bit when getting hurt
+        rb.velocity = new Vector2(-Mathf.Sign(_moveDirection.x) * pushForce, rb.velocity.y);
 
         // Update health bar UI
         UpdateHealthBar();
@@ -146,6 +159,20 @@ public class Player : MonoBehaviour
         StartCoroutine(EnableMovementAfterDelay(1.0f));
     }
 
+    public void ToggleBlock()
+    {
+        isBlocking = !isBlocking;
+
+        if (isBlocking)
+        {
+            Debug.Log("Blocking enabled");
+        }
+        else
+        {
+            Debug.Log("Blocking disabled");
+        }
+    }
+
     private void UpdateHealthBar()
     {
 
@@ -160,7 +187,9 @@ public class Player : MonoBehaviour
     private IEnumerator EnableMovementAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        isTakingDamage = false;
-    }
 
+        // Reset movement
+        isTakingDamage = false;
+        _moveDirection = Vector2.zero;
+    }
 }

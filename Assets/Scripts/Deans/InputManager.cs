@@ -28,6 +28,11 @@ public class InputManager : MonoBehaviour
             myPlayer.PlayerCrouch();
         };
 
+        _gameControls.InGame.Block.performed += ctx =>
+        {
+            myPlayer.ToggleBlock();
+        };
+
         _gameControls.Permanent.Enable();
     }
 
