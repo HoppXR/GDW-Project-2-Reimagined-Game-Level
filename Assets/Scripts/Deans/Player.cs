@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
 
     private GameObject inhaledObject;
 
-    private bool hasSpitOut = false; // Flag to track if the player has spat out an object
+    private bool isMovementEnabled = true;
+    private bool hasSpitOut = false;
     private float currentHealth;
     private bool isTakingDamage = false;
     private bool isBlocking = false;
@@ -62,25 +63,28 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _moveDirection, 0.1f, LayerMask.GetMask("Walls"));
-
-        // If a wall is detected, adjust the movement
-        if (hit.collider != null)
+        if (isMovementEnabled)
         {
-            _moveDirection = Vector2.zero; // Stop movement
-        }
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, _moveDirection, 0.1f, LayerMask.GetMask("Walls"));
 
-        // Check if Shift key is pressed to increase speed
-        float currentSpeed = isRunning ? speed * sprintSpeedMultiplier : speed;
+            // If a wall is detected, adjust the movement
+            if (hit.collider != null)
+            {
+                _moveDirection = Vector2.zero; // Stop movement
+            }
 
-        rb.velocity = new Vector2(currentSpeed * _moveDirection.x, rb.velocity.y);
+            // Check if Shift key is pressed to increase speed
+            float currentSpeed = isRunning ? speed * sprintSpeedMultiplier : speed;
 
-        isGrounded = Physics2D.Raycast(transform.position, -Vector2.up, GetComponent<Collider2D>().bounds.extents.y + 0.1f);
+            rb.velocity = new Vector2(currentSpeed * _moveDirection.x, rb.velocity.y);
 
-        // Reset double jump flag when grounded
-        if (isGrounded)
-        {
-            hasDoubleJumped = false;
+            isGrounded = Physics2D.Raycast(transform.position, -Vector2.up, GetComponent<Collider2D>().bounds.extents.y + 0.1f);
+
+            // Reset double jump flag when grounded
+            if (isGrounded)
+            {
+                hasDoubleJumped = false;
+            }
         }
     }
 
@@ -216,6 +220,8 @@ public class Player : MonoBehaviour
         // Check if there's an inhaled object
         if (!isInhaling && inhaledObject == null)
         {
+            isMovementEnabled = false;
+
             // Detect nearby objects
             Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, inhaleRadius);
 
@@ -247,6 +253,7 @@ public class Player : MonoBehaviour
     {
         isInhaling = false;
         Debug.Log("Stopped Inhaling");
+        isMovementEnabled = true;
     }
 
     public void SpitOut()
@@ -275,6 +282,8 @@ public class Player : MonoBehaviour
 
             // Reset the flag to false
             hasInhaled = false;
+
+            isMovementEnabled = true;
         }
     }
 }
