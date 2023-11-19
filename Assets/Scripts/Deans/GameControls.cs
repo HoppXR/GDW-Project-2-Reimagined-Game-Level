@@ -56,9 +56,27 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Block"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""f20f8a18-ed4c-4548-a698-ccd471adcd40"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inhale"",
+                    ""type"": ""Button"",
+                    ""id"": ""866cdae2-5bec-440b-ace2-764a91e7bbc9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpitOut"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4a2917b-e1d7-47e1-a9cc-70a84fd16fc7"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -145,11 +163,33 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""80af66eb-7620-4fec-81f9-bf38ebdbc57d"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d779a496-0eca-47da-8cde-f9aa8fcd666f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inhale"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21989648-bde3-4d41-a2a2-96f946711d7c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpitOut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -220,6 +260,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
         m_InGame_Crouch = m_InGame.FindAction("Crouch", throwIfNotFound: true);
         m_InGame_Block = m_InGame.FindAction("Block", throwIfNotFound: true);
+        m_InGame_Inhale = m_InGame.FindAction("Inhale", throwIfNotFound: true);
+        m_InGame_SpitOut = m_InGame.FindAction("SpitOut", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -291,6 +333,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Jump;
     private readonly InputAction m_InGame_Crouch;
     private readonly InputAction m_InGame_Block;
+    private readonly InputAction m_InGame_Inhale;
+    private readonly InputAction m_InGame_SpitOut;
     public struct InGameActions
     {
         private @GameControls m_Wrapper;
@@ -299,6 +343,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_InGame_Jump;
         public InputAction @Crouch => m_Wrapper.m_InGame_Crouch;
         public InputAction @Block => m_Wrapper.m_InGame_Block;
+        public InputAction @Inhale => m_Wrapper.m_InGame_Inhale;
+        public InputAction @SpitOut => m_Wrapper.m_InGame_SpitOut;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -320,6 +366,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @Inhale.started += instance.OnInhale;
+            @Inhale.performed += instance.OnInhale;
+            @Inhale.canceled += instance.OnInhale;
+            @SpitOut.started += instance.OnSpitOut;
+            @SpitOut.performed += instance.OnSpitOut;
+            @SpitOut.canceled += instance.OnSpitOut;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -336,6 +388,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @Inhale.started -= instance.OnInhale;
+            @Inhale.performed -= instance.OnInhale;
+            @Inhale.canceled -= instance.OnInhale;
+            @SpitOut.started -= instance.OnSpitOut;
+            @SpitOut.performed -= instance.OnSpitOut;
+            @SpitOut.canceled -= instance.OnSpitOut;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -451,6 +509,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnInhale(InputAction.CallbackContext context);
+        void OnSpitOut(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

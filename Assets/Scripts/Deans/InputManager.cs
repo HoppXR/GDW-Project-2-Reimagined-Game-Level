@@ -28,9 +28,29 @@ public class InputManager : MonoBehaviour
             myPlayer.PlayerCrouch();
         };
 
-        _gameControls.InGame.Block.performed += ctx =>
+        _gameControls.InGame.Block.started += ctx =>
         {
             myPlayer.ToggleBlock();
+        };
+
+        _gameControls.InGame.Block.canceled += ctx =>
+        {
+            myPlayer.StopBlocking();
+        };
+
+        _gameControls.InGame.Inhale.started += ctx =>
+        {
+            myPlayer.Inhale();
+        };
+
+        _gameControls.InGame.Inhale.canceled += ctx =>
+        {
+            myPlayer.StopInhaling();
+        };
+
+        _gameControls.InGame.SpitOut.performed += ctx =>
+        {
+            myPlayer.SpitOut();
         };
 
         _gameControls.Permanent.Enable();

@@ -14,14 +14,22 @@ public class Player : MonoBehaviour
     public float crouch = 5f;
     public float jumpForce = 5f;
     public float sprintSpeedMultiplier = 10f;
-    public float pushForce = 5f; // Adjust this value to control the push force
+    public float pushForce = 5f;
     public float maxHealth = 100f;
+
+    public float inhaleRadius = 2f;
+    public GameObject projectilePrefab;
+    public Transform projectileSpawnPoint;
+    public float inhaleSpeed = 5f;
+
+    private GameObject inhaledObject;
 
     private float currentHealth;
     private bool isTakingDamage = false;
-
     private bool isBlocking = false;
     private float damageReductionMultiplier = 0.5f;
+
+    private bool isInhaling = false;
 
     [SerializeField] private Image healthBar;
     
@@ -159,6 +167,16 @@ public class Player : MonoBehaviour
         StartCoroutine(EnableMovementAfterDelay(1.0f));
     }
 
+    // enable movement after a delay (being hurt)
+    private IEnumerator EnableMovementAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Reset movement
+        isTakingDamage = false;
+        _moveDirection = Vector2.zero;
+    }
+
     public void ToggleBlock()
     {
         isBlocking = !isBlocking;
@@ -173,6 +191,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void StopBlocking()
+    {
+        isBlocking = false;
+        Debug.Log("Blocking stopped");
+    }
+
     private void UpdateHealthBar()
     {
 
@@ -183,13 +207,58 @@ public class Player : MonoBehaviour
 
     }
 
-    // enable movement after a delay (being hurt)
-    private IEnumerator EnableMovementAfterDelay(float delay)
+    public void Inhale()
     {
-        yield return new WaitForSeconds(delay);
+        // Check if there's an inhaled object
+        if (!isInhaling && inhaledObject == null)
+        {
+            // Detect nearby objects (you might want to use physics layers for better filtering)
+            Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, inhaleRadius);
 
-        // Reset movement
-        isTakingDamage = false;
-        _moveDirection = Vector2.zero;
+            // Choose the first object to inhale
+            foreach (Collider2D objCollider in nearbyObjects)
+            {
+                if (objCollider.CompareTag("Inhalable"))
+                {
+                    inhaledObject = objCollider.gameObject;
+                    Rigidbody2D inhaledRb = inhaledObject.GetComponent<Rigidbody2D>();
+
+                    Debug.Log("Inhaled object: " + inhaledObject.name);
+
+                    inhaledRb.isKinematic = true;
+
+                    Destroy(inhaledObject);
+
+                    break;
+                }
+            }
+
+            isInhaling = true;
+            Debug.Log("Inhaling");
+        }
+    }
+    public void StopInhaling()
+    {
+        isInhaling = false;
+        Debug.Log("Stopped Inhaling");
+    }
+
+    public void SpitOut()
+    {
+        // Spit out the inhaled object
+        if (isInhaling && inhaledObject != null)
+        {
+            Rigidbody2D rb = inhaledObject.GetComponent<Rigidbody2D>();
+            rb.isKinematic = false;
+            rb.velocity = transform.right * inhaleSpeed;
+
+            // Destroy the inhaled object
+            Destroy(inhaledObject);
+
+            inhaledObject = null;
+
+            isInhaling = false;
+            Debug.Log("Spit Out and Destroyed");
+        }
     }
 }

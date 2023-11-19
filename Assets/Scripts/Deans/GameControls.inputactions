@@ -34,9 +34,27 @@
                 },
                 {
                     "name": "Block",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "f20f8a18-ed4c-4548-a698-ccd471adcd40",
-                    "expectedControlType": "Vector3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inhale",
+                    "type": "Button",
+                    "id": "866cdae2-5bec-440b-ace2-764a91e7bbc9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpitOut",
+                    "type": "Button",
+                    "id": "c4a2917b-e1d7-47e1-a9cc-70a84fd16fc7",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -123,11 +141,33 @@
                 {
                     "name": "",
                     "id": "80af66eb-7620-4fec-81f9-bf38ebdbc57d",
-                    "path": "<Keyboard>/f",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d779a496-0eca-47da-8cde-f9aa8fcd666f",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inhale",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21989648-bde3-4d41-a2a2-96f946711d7c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpitOut",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
