@@ -21,9 +21,11 @@ public class Player : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
     public float inhaleSpeed = 5f;
+    public float spitOutSpeed = 10f;
 
     private GameObject inhaledObject;
 
+    private bool hasSpitOut = false; // Flag to track if the player has spat out an object
     private float currentHealth;
     private bool isTakingDamage = false;
     private bool isBlocking = false;
@@ -31,8 +33,10 @@ public class Player : MonoBehaviour
 
     private bool isInhaling = false;
 
+    private bool hasInhaled = false;
+
     [SerializeField] private Image healthBar;
-    
+
     public static bool isRunning;
 
     bool isGrounded;
@@ -212,7 +216,7 @@ public class Player : MonoBehaviour
         // Check if there's an inhaled object
         if (!isInhaling && inhaledObject == null)
         {
-            // Detect nearby objects (you might want to use physics layers for better filtering)
+            // Detect nearby objects
             Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, inhaleRadius);
 
             // Choose the first object to inhale
@@ -225,9 +229,11 @@ public class Player : MonoBehaviour
 
                     Debug.Log("Inhaled object: " + inhaledObject.name);
 
+                    inhaledObject.GetComponent<Renderer>().enabled = false;
+
                     inhaledRb.isKinematic = true;
 
-                    Destroy(inhaledObject);
+                    hasInhaled = true;
 
                     break;
                 }
@@ -245,20 +251,30 @@ public class Player : MonoBehaviour
 
     public void SpitOut()
     {
-        // Spit out the inhaled object
-        if (isInhaling && inhaledObject != null)
-        {
-            Rigidbody2D rb = inhaledObject.GetComponent<Rigidbody2D>();
-            rb.isKinematic = false;
-            rb.velocity = transform.right * inhaleSpeed;
+        Debug.Log("SpitOut method called");
 
-            // Destroy the inhaled object
+        if (inhaledObject != null && hasInhaled)
+        {
+            // Spit out a new projectile
+            GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+
+            // Get the Rigidbody2D of the projectile
+            Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();
+
+            // Apply velocity to the projectile with increased speed
+            projectileRb.velocity = transform.right * spitOutSpeed;
+
+            // Destroy the inhaled object after spitting it out
             Destroy(inhaledObject);
 
+            // Optionally, you can set inhaledObject to null here
             inhaledObject = null;
 
-            isInhaling = false;
-            Debug.Log("Spit Out and Destroyed");
+            // Log a message
+            Debug.Log("Spit out an object");
+
+            // Reset the flag to false
+            hasInhaled = false;
         }
     }
 }
