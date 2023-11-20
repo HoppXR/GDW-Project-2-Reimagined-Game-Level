@@ -8,49 +8,40 @@ public class HealthBar : MonoBehaviour
     public Enemy enemy;
 
     private Image healthBarImage;
-    
-    // temp slider game object for health bar
-    public Image fillImage;
-    private Slider slider;
+
+    [SerializeField] private Slider slider;
+
 
     void Start()
     {
+        Debug.Log("HealthBar Start()");
+
         // temp
-        healthBarImage = GetComponent<Image>();
         slider = GetComponent<Slider>();
 
         if (enemy == null)
         {
             Debug.LogError("HealthBar: Enemy reference not set!");
         }
+
+        if (slider == null)
+        {
+            Debug.LogError("HealthBar: Slider reference not set!");
+        }
     }
 
 
     void Update()
     {
-        if (enemy != null)
+        if (enemy != null && slider != null)
         {
             // temp healthbar
             float fillValue = enemy.currentHealth / enemy.maxHealth;
             slider.value = fillValue;
-
-            //UpdateHealthBar(enemy.GetHealthPercentage());
-        }
-    }
-
-    /*
-    void UpdateHealthBar(float percentage)
-    {
-        percentage = Mathf.Clamp01(percentage);
-
-        if (healthBarImage != null)
-        {
-            healthBarImage.fillAmount = percentage;
         }
         else
         {
-            Debug.LogError("HealthBar: Image component not found!");
+            Debug.LogError("Slider Reference not set!");
         }
     }
-    */
 }
