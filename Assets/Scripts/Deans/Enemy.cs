@@ -40,6 +40,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public float GetHealthPercentage()
+    {
+        // Return the health percentage (between 0 and 1)
+        return currentHealth / maxHealth;
+    }
+
     private void Die()
     {
         Debug.Log("Enemy defeated!");
