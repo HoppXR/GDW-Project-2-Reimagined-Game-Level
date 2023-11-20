@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     private GameObject inhaledObject;
 
     private bool isMovementEnabled = true;
-    private bool hasSpitOut = false;
     private float currentHealth;
     private bool isTakingDamage = false;
     private bool isBlocking = false;
@@ -267,6 +266,8 @@ public class Player : MonoBehaviour
 
             // Get the Rigidbody2D of the projectile
             Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();
+
+            Vector2 spitDirection = transform.right * (transform.localScale.x > 0 ? 1 : -1);
 
             // Apply velocity to the projectile with increased speed
             projectileRb.velocity = transform.right * spitOutSpeed;

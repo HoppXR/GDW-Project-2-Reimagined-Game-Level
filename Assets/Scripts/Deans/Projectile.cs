@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float spitForce = 10f;
+    public float speed = 10f;
+    public float damageAmount = 10f;
 
-    void Start()
+    private Vector2 direction;
+
+    //set the direction of the projectile
+    public void SetDirection(Vector2 newDirection)
     {
-        // Spit the projectile forward when spawned
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * spitForce;
+        direction = newDirection;
+    }
+
+    void Update()
+    {
+        // Move the projectile in the set direction
+        transform.Translate(direction * speed * Time.deltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                // Deal damage to the enemy
+                enemy.TakeDamage(damageAmount);
+
+                Destroy(gameObject);
+            }
+        }
     }
 }
