@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float damageAmount = 10f;
-    public float maxHealth = 50f;
-    private float currentHealth;
+    [SerializeField] public float damageAmount = 10f;
+    [SerializeField] public float maxHealth = 50f;
+    public float currentHealth;
 
 
     void Start()
@@ -50,6 +50,6 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy defeated!");
         // need to add animation
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

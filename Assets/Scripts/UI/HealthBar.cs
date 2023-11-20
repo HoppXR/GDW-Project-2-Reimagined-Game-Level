@@ -8,10 +8,16 @@ public class HealthBar : MonoBehaviour
     public Enemy enemy;
 
     private Image healthBarImage;
+    
+    // temp slider game object for health bar
+    public Image fillImage;
+    private Slider slider;
 
     void Start()
     {
+        // temp
         healthBarImage = GetComponent<Image>();
+        slider = GetComponent<Slider>();
 
         if (enemy == null)
         {
@@ -24,10 +30,15 @@ public class HealthBar : MonoBehaviour
     {
         if (enemy != null)
         {
-            UpdateHealthBar(enemy.GetHealthPercentage());
+            // temp healthbar
+            float fillValue = enemy.currentHealth / enemy.maxHealth;
+            slider.value = fillValue;
+
+            //UpdateHealthBar(enemy.GetHealthPercentage());
         }
     }
 
+    /*
     void UpdateHealthBar(float percentage)
     {
         percentage = Mathf.Clamp01(percentage);
@@ -41,4 +52,5 @@ public class HealthBar : MonoBehaviour
             Debug.LogError("HealthBar: Image component not found!");
         }
     }
+    */
 }
