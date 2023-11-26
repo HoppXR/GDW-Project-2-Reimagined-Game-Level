@@ -52,7 +52,6 @@ public class InputManager : MonoBehaviour
         {
             myPlayer.SpitOut();
         };
-
         _gameControls.Permanent.Enable();
     }
 

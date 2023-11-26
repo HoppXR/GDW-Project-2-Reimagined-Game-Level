@@ -87,6 +87,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TogglePlayerInput(bool enable)
+    {
+        isMovementEnabled = enable;
+    }
+
     public void SetMovementDirection(Vector2 currentDirection)
     {
         _moveDirection = currentDirection;
@@ -267,10 +272,18 @@ public class Player : MonoBehaviour
             // Get the Rigidbody2D of the projectile
             Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();
 
+            // Ensure SpriteRenderer is enabled
+            SpriteRenderer spriteRenderer = newProjectile.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = true;
+            }
+
+            // Get the direction based on player's facing direction
             Vector2 spitDirection = transform.right * (transform.localScale.x > 0 ? 1 : -1);
 
             // Apply velocity to the projectile with increased speed
-            projectileRb.velocity = transform.right * spitOutSpeed;
+            projectileRb.velocity = spitDirection * spitOutSpeed;
 
             // Destroy the inhaled object after spitting it out
             Destroy(inhaledObject);

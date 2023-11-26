@@ -16,8 +16,6 @@ public class HealthBar : MonoBehaviour
     {
         Debug.Log("HealthBar Start()");
 
-        // temp
-        slider = GetComponent<Slider>();
 
         if (enemy == null)
         {
@@ -41,7 +39,7 @@ public class HealthBar : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Slider Reference not set!");
+
         }
     }
 }
