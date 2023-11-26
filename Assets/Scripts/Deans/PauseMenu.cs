@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PauseMenu : MonoBehaviour
 {
@@ -19,7 +22,8 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        pauseMenuInstance = Instantiate(pauseMenuPrefab);
+        //pauseMenuInstance = Instantiate(pauseMenuPrefab);
+        pauseMenuInstance = pauseMenuPrefab;
         pauseMenuInstance.SetActive(false);
 
         initialVolumes = new float[audioSources.Length];
@@ -99,6 +103,10 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quit Button Clicked");
         // Quit the application it works in builds, not in the editor
+        #if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+        #else
         Application.Quit();
+        #endif
     }
 }
