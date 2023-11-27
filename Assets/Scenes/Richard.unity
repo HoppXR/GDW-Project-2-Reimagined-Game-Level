@@ -576,7 +576,7 @@ MonoBehaviour:
   RightTreeSpikePrefab: {fileID: 1790141205503648478, guid: 26f86233d076097448ae90f62a127da2, type: 3}
   RightWormSpikePrefab: {fileID: 1790141205503648478, guid: c085a0c9e88db954c9db34826de23f9d, type: 3}
   AirPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
-  TrunkPrefab: {fileID: 750818682085601125, guid: 88796451343ccbd48939d09525cbc420, type: 3}
+  TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
 --- !u!114 &494332096
 MonoBehaviour:
   m_ObjectHideFlags: 0
