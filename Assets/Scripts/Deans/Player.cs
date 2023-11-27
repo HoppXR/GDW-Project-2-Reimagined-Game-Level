@@ -6,11 +6,6 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
-
-    // Stuff for animation
-    public Animator animator;
-    float horizontalMove = 0f;
-    
     Rigidbody2D rb;
 
     [SerializeField] private float speed;
@@ -67,10 +62,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Run animation
-        horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-        
+        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+
         if (isMovementEnabled)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, _moveDirection, 0.1f, LayerMask.GetMask("Walls"));
@@ -85,8 +78,6 @@ public class Player : MonoBehaviour
             float currentSpeed = isRunning ? speed * sprintSpeedMultiplier : speed;
 
             rb.velocity = new Vector2(currentSpeed * _moveDirection.x, rb.velocity.y);
-
-            isGrounded = Physics2D.Raycast(transform.position, -Vector2.up, GetComponent<Collider2D>().bounds.extents.y + 0.1f);
 
             // Reset double jump flag when grounded
             if (isGrounded)
@@ -107,14 +98,12 @@ public class Player : MonoBehaviour
     }
 
     public void PlayerJump()
-    {
-        if (isGrounded)
-        {           
-            // Regular jump
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            Debug.Log("jump");
-        }
-        else if (!hasDoubleJumped)
+    {       
+        // Regular jump
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        Debug.Log("jump");
+
+        if (!hasDoubleJumped)
         {
             // Double jump with reduced effectiveness
             rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.5f);
