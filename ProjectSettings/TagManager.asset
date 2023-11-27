@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Inhalable
   - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX

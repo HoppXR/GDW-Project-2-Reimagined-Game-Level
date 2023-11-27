@@ -3,44 +3,70 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TreeAttacks : MonoBehaviour
 {
     private Rigidbody2D rb;
-
-    public Vector3 lTreeAirAttack = new Vector3(-42.16f, -9.04f, 0f);
-    public Vector3 rTreeAirAttack = new Vector3(8.43f, -9.04f, 0f);
-    [SerializeField] private float AirTravelSpeed;
+    //AirAttack
+    public Vector3 lTreeAirAttack = new Vector3(-40f, -10f, 0f);
+    public Vector3 rTreeAirAttack = new Vector3(7f, -10f, 0f);
+    [SerializeField] private float AirTravelSpeed = 10;
+    [SerializeField] private float AirAttackAmount = 10;
+    [SerializeField] private float AirAttackDelay = 0.3f;
+    
+    //TreeDropStuff
+    [SerializeField] private float TreeDropStuffAmount = 3;
+    [SerializeField] private float TreeSpinDropStuffAmount = 10;
+    
+    //TrunkAttack
+    [SerializeField] private float trunkMoveSpeed = 150f;
+    
+    //Prefabs
+    [SerializeField] private Rigidbody2D LeftTreeApplePrefab;
+    [SerializeField] private Rigidbody2D LeftTreeSpikePrefab;
+    [SerializeField] private Rigidbody2D LeftWormSpikePrefab;
+    [SerializeField] private Rigidbody2D RightTreeApplePrefab;
+    [SerializeField] private Rigidbody2D RightTreeSpikePrefab;
+    [SerializeField] private Rigidbody2D RightWormSpikePrefab;
     [SerializeField] private Rigidbody2D AirPrefab;
-    [SerializeField] private float AirDelay = 0.3f;
-    private WaitForSeconds delay;
-
+    [SerializeField] private Rigidbody2D TrunkPrefab;
+    private Rigidbody2D fallingObject;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            LAirAttack();
+            StartCoroutine(LAirAttack());
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            RAirAttack();
+            StartCoroutine(RAirAttack());
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine(LTreeDropStuff());
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            StartCoroutine(RTreeDropStuff());
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            StartCoroutine(SpinDropAttack());
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TrunkAttack();
         }
     }
 
-    //Instantiate at a set location. Add force
-    public void LAirAttack()
+    private IEnumerator LAirAttack()
     {
-        delay = new WaitForSeconds(AirDelay);
-        StartCoroutine(lTProjectile());
-    }
-
-    private IEnumerator lTProjectile()
-    {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < AirAttackAmount; i++)
         {
             Rigidbody2D AirProjectiles =
                 Instantiate(AirPrefab, lTreeAirAttack, Quaternion.Euler(0f, 0f, 0f)).GetComponent<Rigidbody2D>();
-            
+
             if (AirProjectiles != null)
             {
                 float randomAngle = UnityEngine.Random.Range(-30f, 30f);
@@ -48,79 +74,115 @@ public class TreeAttacks : MonoBehaviour
                 direction.Normalize();
                 AirProjectiles.AddForce(AirTravelSpeed * direction, ForceMode2D.Impulse);
                 Destroy(AirProjectiles.gameObject, 5);
+                yield return new WaitForSeconds(AirAttackDelay);
             }
-
-            yield return delay;
         }
     }
-    
-    public void RAirAttack()
-    {
-        delay = new WaitForSeconds(AirDelay);
-        StartCoroutine(rTProjectile());
-    }
 
-    private IEnumerator rTProjectile()
+    private IEnumerator RAirAttack()
     {
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < AirAttackAmount; i++)
         {
             Rigidbody2D AirProjectiles =
                 Instantiate(AirPrefab, rTreeAirAttack, Quaternion.Euler(0f, 0f, 0f)).GetComponent<Rigidbody2D>();
-        
+
             if (AirProjectiles != null)
             {
-                // Generate a random angle within a range for the spread
                 float randomSpreadAngle = UnityEngine.Random.Range(-30f, 30f);
-
-                // Adjust the X component to make the projectile move towards the left
                 Vector2 leftDirection = Quaternion.Euler(0f, 0f, randomSpreadAngle) * Vector2.left;
-
-                // Normalize the vector to ensure consistent speed in all directions
                 leftDirection.Normalize();
-
                 AirProjectiles.AddForce(AirTravelSpeed * leftDirection, ForceMode2D.Impulse);
                 Destroy(AirProjectiles.gameObject, 5);
+                yield return new WaitForSeconds(AirAttackDelay);
             }
-
-            yield return delay;
         }
     }
 
+    private IEnumerator LTreeDropStuff()
+    {
+        for (int i = 0; i < TreeDropStuffAmount; i++)
+        {
 
-    
-    //Instantiate randomly at a range. Drop 3
-    public void DropApples()
-    {
-        
+            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f ? LeftTreeApplePrefab.gameObject : LeftTreeSpikePrefab.gameObject;
+            float randomX = UnityEngine.Random.Range(-37f, -32.9f);
+            float randomY = UnityEngine.Random.Range(5.5f, 8f);
+            Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
+            GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+            fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
+            yield return new WaitForSeconds(1f);
+        }
     }
     
-    
-    //Instantiate randomly at a range
-    public void DropAppleSpike()
+    private IEnumerator RTreeDropStuff()
     {
-        
+        for (int i = 0; i < TreeDropStuffAmount; i++)
+        {
+            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f ? RightTreeApplePrefab.gameObject : RightTreeSpikePrefab.gameObject;
+            float randomX = UnityEngine.Random.Range(0f, 4f);
+            float randomY = UnityEngine.Random.Range(5.5f, 8f);
+            Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
+            GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+            fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
+            yield return new WaitForSeconds(1f);
+        }
     }
     
-    
-    //Instantiate at a set location. Transform or add force
+    private IEnumerator SpinDropAttack()
+    {
+        for (int i = 0; i < TreeSpinDropStuffAmount; i++)
+        {
+            int leftOrRight = UnityEngine.Random.Range(1, 3);
+
+            GameObject prefabToSpawn;
+            if (leftOrRight == 1)
+            {
+                prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f ? LeftTreeApplePrefab.gameObject : LeftWormSpikePrefab.gameObject;
+                float randomX = UnityEngine.Random.Range(-37f, -32.9f);
+                float randomY = UnityEngine.Random.Range(5.5f, 8f);
+                Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
+                GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+                fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
+            }
+
+            if (leftOrRight == 2)
+            {
+                prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f ? RightTreeApplePrefab.gameObject : RightWormSpikePrefab.gameObject;
+                float randomX = UnityEngine.Random.Range(0f, 4f);
+                float randomY = UnityEngine.Random.Range(5.5f, 8f);
+                Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
+                GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+                fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
+            }
+            yield return new WaitForSeconds(0.6f);
+        }
+    }
+
     public void TrunkAttack()
     {
+        Rigidbody2D trunkObject = Instantiate(TrunkPrefab, new Vector3(-41.9516f, -15f, 0f), Quaternion.identity);
         
-    }
-    
-    
-    public void TripleTrunkAttack()
-    {
+        Rigidbody2D trunkRigidbody = trunkObject.GetComponent<Rigidbody2D>();
         
+        StartCoroutine(MoveTrunk(trunkRigidbody, new Vector3(8.64f, -15f, 0f), 5));
+        Destroy(trunkObject.gameObject, 3);
     }
 
-    
-    //Instantiate randomly at a range. Drop 6
-    public void SpinAttack()
+    private IEnumerator MoveTrunk(Rigidbody2D trunkRigidbody, Vector3 targetPosition, float duration)
     {
+        float elapsed_time = 0f;
+        Vector3 initialPosition = trunkRigidbody.position;
+
+        while (elapsed_time < duration && trunkRigidbody != null)
+        {
+            trunkRigidbody.position = Vector3.MoveTowards(initialPosition, targetPosition, (elapsed_time / duration) * trunkMoveSpeed);
+            elapsed_time += Time.deltaTime;
+            yield return null;
+        }
         
+        if (trunkRigidbody != null)
+        {
+            trunkRigidbody.position = targetPosition;
+        }
     }
-    
-    
-    
 }
+
