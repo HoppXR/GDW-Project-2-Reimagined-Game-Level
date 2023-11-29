@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6084138930197764052}
   - component: {fileID: 5098342624472058099}
   - component: {fileID: 9187855048759920623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EsmondSpikeL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceSpeed: 25
   bounceDistance: 6
+  spinSpeed: -200

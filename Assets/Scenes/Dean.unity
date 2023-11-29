@@ -1028,7 +1028,6 @@ GameObject:
   - component: {fileID: 560672288}
   - component: {fileID: 560672287}
   - component: {fileID: 560672286}
-  - component: {fileID: 560672290}
   m_Layer: 7
   m_Name: Whispy Woods 2
   m_TagString: Enemy
@@ -1163,34 +1162,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -173.772, z: 0}
---- !u!114 &560672290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560672285}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b882e0d131cf744bec8056d98f8871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lTreeAirAttack: {x: -40, y: -10, z: 0}
-  rTreeAirAttack: {x: 7, y: -10, z: 0}
-  AirTravelSpeed: 10
-  AirAttackAmount: 10
-  AirAttackDelay: 0.3
-  TreeDropStuffAmount: 3
-  TreeSpinDropStuffAmount: 10
-  trunkMoveSpeed: 150
-  LeftTreeApplePrefab: {fileID: 183279271887177896, guid: 6c8007abdf87dfa44bc76f81c611234a, type: 3}
-  LeftTreeSpikePrefab: {fileID: 5098342624472058099, guid: f2811ecbbda9e5e408e6f65ab815dd36, type: 3}
-  LeftWormSpikePrefab: {fileID: 1776673374556615160, guid: 4b90bd7afc742a643a8c1a7b6df2f25d, type: 3}
-  RightTreeApplePrefab: {fileID: 325936728603695898, guid: 81f884445b24b5244a41364c4580ba50, type: 3}
-  RightTreeSpikePrefab: {fileID: 835421737299917817, guid: a1e32db68d1ffdb4ab07ee4e484a89fd, type: 3}
-  RightWormSpikePrefab: {fileID: 1776673374556615160, guid: 86f35b98cd06441479e2786b7d4bed15, type: 3}
-  AirPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
-  TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
 --- !u!1 &660387710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,7 +1734,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

@@ -5,7 +5,7 @@ public class ObjectBounceLeft : MonoBehaviour
 {
     private Rigidbody2D rb;
     private int bounceCount = 0;
-    private int maxBounces = 3;
+    private int maxBounces = 4;
 
     [SerializeField] private float bounceSpeed = 25f;
     [SerializeField] private float bounceDistance = 6f;

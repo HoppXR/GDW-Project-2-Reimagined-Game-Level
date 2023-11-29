@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1031351338370550818}
   - component: {fileID: 2990345011500046654}
   - component: {fileID: 5208507420224148112}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EsmondAppleL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

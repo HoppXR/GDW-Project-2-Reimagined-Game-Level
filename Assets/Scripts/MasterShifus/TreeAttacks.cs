@@ -7,6 +7,8 @@ using UnityEngine;
 public class TreeAttacks : MonoBehaviour
 {
     private Rigidbody2D rb;
+    Vector3 pickedPosition;
+    
     //AirAttack
     public Vector3 lTreeAirAttack = new Vector3(-40f, -10f, 0f);
     public Vector3 rTreeAirAttack = new Vector3(7f, -10f, 0f);
@@ -102,12 +104,21 @@ public class TreeAttacks : MonoBehaviour
     {
         for (int i = 0; i < TreeDropStuffAmount; i++)
         {
-
             GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f ? LeftTreeApplePrefab.gameObject : LeftTreeSpikePrefab.gameObject;
             float randomX = UnityEngine.Random.Range(-37f, -32.9f);
             float randomY = UnityEngine.Random.Range(5.5f, 8f);
+            float randomX2 = UnityEngine.Random.Range(-26.6f, -20.24f);
             Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-            GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+            Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
+            if (UnityEngine.Random.Range(0, 2) == 0)
+            {
+                pickedPosition = randomPosition;
+            }
+            else
+            {
+                pickedPosition = randomPosition2;
+            }
+            GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
             fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             yield return new WaitForSeconds(1f);
         }
@@ -120,8 +131,18 @@ public class TreeAttacks : MonoBehaviour
             GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f ? RightTreeApplePrefab.gameObject : RightTreeSpikePrefab.gameObject;
             float randomX = UnityEngine.Random.Range(0f, 4f);
             float randomY = UnityEngine.Random.Range(5.5f, 8f);
+            float randomX2 = UnityEngine.Random.Range(-13f, -6f);
             Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-            GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+            Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
+            if (UnityEngine.Random.Range(0, 2) == 0)
+            {
+                pickedPosition = randomPosition;
+            }
+            else
+            {
+                pickedPosition = randomPosition2;
+            }
+            GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
             fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             yield return new WaitForSeconds(1f);
         }
@@ -134,23 +155,43 @@ public class TreeAttacks : MonoBehaviour
             int leftOrRight = UnityEngine.Random.Range(1, 3);
 
             GameObject prefabToSpawn;
-            if (leftOrRight == 1)
+            if (leftOrRight == 1)//Left
             {
                 prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f ? LeftTreeApplePrefab.gameObject : LeftWormSpikePrefab.gameObject;
                 float randomX = UnityEngine.Random.Range(-37f, -32.9f);
                 float randomY = UnityEngine.Random.Range(5.5f, 8f);
+                float randomX2 = UnityEngine.Random.Range(-26.6f, -20.24f);
                 Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-                GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+                Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
+                if (UnityEngine.Random.Range(0, 2) == 0)
+                {
+                    pickedPosition = randomPosition;
+                }
+                else
+                {
+                    pickedPosition = randomPosition2;
+                }
+                GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
                 fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             }
 
-            if (leftOrRight == 2)
+            if (leftOrRight == 2)//Right
             {
                 prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f ? RightTreeApplePrefab.gameObject : RightWormSpikePrefab.gameObject;
                 float randomX = UnityEngine.Random.Range(0f, 4f);
                 float randomY = UnityEngine.Random.Range(5.5f, 8f);
+                float randomX2 = UnityEngine.Random.Range(-13f, -6f);
                 Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-                GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+                Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
+                if (UnityEngine.Random.Range(0, 2) == 0)
+                {
+                    pickedPosition = randomPosition;
+                }
+                else
+                {
+                    pickedPosition = randomPosition2;
+                }
+                GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
                 fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             }
             yield return new WaitForSeconds(0.6f);
