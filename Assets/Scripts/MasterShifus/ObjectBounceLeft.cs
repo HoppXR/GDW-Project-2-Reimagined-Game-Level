@@ -9,6 +9,7 @@ public class ObjectBounceLeft : MonoBehaviour
 
     [SerializeField] private float bounceSpeed = 25f;
     [SerializeField] private float bounceDistance = 6f;
+    [SerializeField] private float spinSpeed = -1000f;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class ObjectBounceLeft : MonoBehaviour
         if (rb != null)
         {
             rb.velocity = new Vector2(-bounceDistance, rb.velocity.y);
+            rb.angularVelocity = spinSpeed;
             bounceCount++;
 
             if (bounceCount >= maxBounces)

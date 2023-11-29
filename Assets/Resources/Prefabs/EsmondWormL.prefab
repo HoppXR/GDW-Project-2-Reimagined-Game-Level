@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3616942188026317490}
   - component: {fileID: 7051738084731938184}
   - component: {fileID: 1776673374556615160}
-  - component: {fileID: 6593115620813826939}
   - component: {fileID: 3885935657172607710}
   - component: {fileID: -209655323524757973}
+  - component: {fileID: 6159661477867429860}
   m_Layer: 0
   m_Name: EsmondWormL
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: db79eccbfd3a1474db0f1d2f4d70d1cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -115,8 +115,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6593115620813826939
-BoxCollider2D:
+--- !u!114 &3885935657172607710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359459463426600299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f278065c4178524ab36acf207b8d301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeed: 25
+  bounceDistance: 6
+  spinSpeed: 3000
+--- !u!114 &-209655323524757973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359459463426600299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7679719d434154399b0fc489d3160e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &6159661477867429860
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,42 +174,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.96, y: 0.96}
-    newSize: {x: 0.96, y: 0.96}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.050150905, y: -0.009973063}
   serializedVersion: 2
-  m_Size: {x: 0.96, y: 0.96}
-  m_EdgeRadius: 0
---- !u!114 &3885935657172607710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2359459463426600299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f278065c4178524ab36acf207b8d301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceSpeed: 25
-  bounceDistance: 6
---- !u!114 &-209655323524757973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2359459463426600299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7679719d434154399b0fc489d3160e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Radius: 0.41503283

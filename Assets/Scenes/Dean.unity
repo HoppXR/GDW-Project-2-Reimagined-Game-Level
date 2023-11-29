@@ -979,12 +979,12 @@ MonoBehaviour:
   TreeDropStuffAmount: 3
   TreeSpinDropStuffAmount: 10
   trunkMoveSpeed: 150
-  LeftTreeApplePrefab: {fileID: 183279271887177896, guid: 6c8007abdf87dfa44bc76f81c611234a, type: 3}
-  LeftTreeSpikePrefab: {fileID: 5098342624472058099, guid: f2811ecbbda9e5e408e6f65ab815dd36, type: 3}
-  LeftWormSpikePrefab: {fileID: 1776673374556615160, guid: 4b90bd7afc742a643a8c1a7b6df2f25d, type: 3}
-  RightTreeApplePrefab: {fileID: 325936728603695898, guid: 81f884445b24b5244a41364c4580ba50, type: 3}
-  RightTreeSpikePrefab: {fileID: 835421737299917817, guid: a1e32db68d1ffdb4ab07ee4e484a89fd, type: 3}
-  RightWormSpikePrefab: {fileID: 1776673374556615160, guid: 86f35b98cd06441479e2786b7d4bed15, type: 3}
+  LeftTreeApplePrefab: {fileID: 325936728603695898, guid: 81f884445b24b5244a41364c4580ba50, type: 3}
+  LeftTreeSpikePrefab: {fileID: 835421737299917817, guid: a1e32db68d1ffdb4ab07ee4e484a89fd, type: 3}
+  LeftWormSpikePrefab: {fileID: 1776673374556615160, guid: 86f35b98cd06441479e2786b7d4bed15, type: 3}
+  RightTreeApplePrefab: {fileID: 183279271887177896, guid: 6c8007abdf87dfa44bc76f81c611234a, type: 3}
+  RightTreeSpikePrefab: {fileID: 5098342624472058099, guid: f2811ecbbda9e5e408e6f65ab815dd36, type: 3}
+  RightWormSpikePrefab: {fileID: 1776673374556615160, guid: 4b90bd7afc742a643a8c1a7b6df2f25d, type: 3}
   AirPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
   TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
 --- !u!114 &474792488
@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 688034473}
   m_Layer: 0
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2996,7 +2996,7 @@ GameObject:
   - component: {fileID: 1541309123}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

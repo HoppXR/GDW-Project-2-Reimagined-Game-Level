@@ -9,11 +9,12 @@ public class ObjectBounceRight : MonoBehaviour
 
     [SerializeField] private float bounceSpeed = 25f;
     [SerializeField] private float bounceDistance = 6f;
+    [SerializeField] private float spinSpeed = 1000f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 7f);//For if ball gets stuck? seen it happen only once
+        Destroy(gameObject, 7f);
     }
 
     private void Update()
@@ -37,6 +38,7 @@ public class ObjectBounceRight : MonoBehaviour
         if (rb != null)
         {
             rb.velocity = new Vector2(bounceDistance, rb.velocity.y);
+            rb.angularVelocity = spinSpeed;
             bounceCount++;
 
             if (bounceCount >= maxBounces)
