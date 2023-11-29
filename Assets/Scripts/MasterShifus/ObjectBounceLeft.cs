@@ -13,6 +13,7 @@ public class ObjectBounceLeft : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Destroy(gameObject, 7f);//For if ball gets stuck? seen it happen only once
     }
 
     private void Update()
@@ -28,10 +29,7 @@ public class ObjectBounceLeft : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             BounceToLeft();
-        }
-        else if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
+            Destroy(gameObject, 5f);
         }
     }
 

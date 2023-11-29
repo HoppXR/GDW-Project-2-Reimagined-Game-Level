@@ -20,7 +20,7 @@ public class TreeAI : MonoBehaviour
     
     private IEnumerator TreesAttacking()
     {
-        yield return new WaitForSeconds(4f);
+        //yield return new WaitForSeconds(4f);
         while (whispyWoodsL.currentHealth > 0 || whispyWoodsR.currentHealth > 0)
         {
             if (whispyWoodsL.currentHealth > 0 && whispyWoodsR.currentHealth > 0)
@@ -45,7 +45,7 @@ public class TreeAI : MonoBehaviour
         while (whispyWoodsL.currentHealth > 0 && whispyWoodsR.currentHealth > 0)
         {
             // Randomly choose between LAirAttack and RTreeDropStuff
-            if (Random.Range(0, 2) == 0)//range from 0 to 1
+            if (Random.Range(0, 2) == 0)
             {
                 yield return StartCoroutine(_treeAttacks.LAirAttack());
                 yield return new WaitForSeconds(2f);
@@ -81,12 +81,12 @@ public class TreeAI : MonoBehaviour
             }
         }
     }
+
     private IEnumerator OnlyRightTreeAlive()
     {
-        while (whispyWoodsL.currentHealth > 0 && whispyWoodsR.currentHealth > 0)
+        while (whispyWoodsR.currentHealth > 0)
         {
-            // Randomly choose between LAirAttack and RTreeDropStuff
-            if (Random.Range(0, 2) == 0)//range from 0 to 1
+            if (Random.Range(0, 2) == 0)
             {
                 yield return StartCoroutine(_treeAttacks.RAirAttack());
                 yield return new WaitForSeconds(2f);
@@ -97,7 +97,6 @@ public class TreeAI : MonoBehaviour
                 yield return new WaitForSeconds(2f);
             }
             
-            // Randomly choose between SpinDropAttack and TrunkAttack
             if (Random.Range(0, 2) == 0)
             {
                 yield return StartCoroutine(_treeAttacks.SpinDropAttack());
@@ -110,12 +109,12 @@ public class TreeAI : MonoBehaviour
             }
         }
     }
+
     private IEnumerator OnlyLeftTreeAlive()
     {
-        while (whispyWoodsL.currentHealth > 0 && whispyWoodsR.currentHealth > 0)
+        while (whispyWoodsL.currentHealth > 0)
         {
-            // Randomly choose between LAirAttack and RTreeDropStuff
-            if (Random.Range(0, 2) == 0)//range from 0 to 1
+            if (Random.Range(0, 2) == 0)
             {
                 yield return StartCoroutine(_treeAttacks.LAirAttack());
                 yield return new WaitForSeconds(2f);
@@ -125,8 +124,7 @@ public class TreeAI : MonoBehaviour
                 yield return StartCoroutine(_treeAttacks.LTreeDropStuff());
                 yield return new WaitForSeconds(2f);
             }
-
-            // Randomly choose between SpinDropAttack and TrunkAttack
+            
             if (Random.Range(0, 2) == 0)
             {
                 yield return StartCoroutine(_treeAttacks.SpinDropAttack());

@@ -13,6 +13,7 @@ public class ObjectBounceRight : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Destroy(gameObject, 7f);//For if ball gets stuck? seen it happen only once
     }
 
     private void Update()
@@ -28,10 +29,6 @@ public class ObjectBounceRight : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             BounceToRight();
-        }
-        else if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
         }
     }
 
