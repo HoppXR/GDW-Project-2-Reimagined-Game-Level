@@ -60,7 +60,7 @@ public class TreeAttacks : MonoBehaviour
         }
     }
 
-    private IEnumerator LAirAttack()
+    public IEnumerator LAirAttack()//Attack last 3.5 secs
     {
         for (int i = 0; i < AirAttackAmount; i++)
         {
@@ -79,7 +79,7 @@ public class TreeAttacks : MonoBehaviour
         }
     }
 
-    private IEnumerator RAirAttack()
+    public IEnumerator RAirAttack()//Attack last 3.5 secs
     {
         for (int i = 0; i < AirAttackAmount; i++)
         {
@@ -98,7 +98,7 @@ public class TreeAttacks : MonoBehaviour
         }
     }
 
-    private IEnumerator LTreeDropStuff()
+    public IEnumerator LTreeDropStuff()//Attack last 5 secs
     {
         for (int i = 0; i < TreeDropStuffAmount; i++)
         {
@@ -113,7 +113,7 @@ public class TreeAttacks : MonoBehaviour
         }
     }
     
-    private IEnumerator RTreeDropStuff()
+    public IEnumerator RTreeDropStuff()//Attack last 5 secs
     {
         for (int i = 0; i < TreeDropStuffAmount; i++)
         {
@@ -127,7 +127,7 @@ public class TreeAttacks : MonoBehaviour
         }
     }
     
-    private IEnumerator SpinDropAttack()
+    public IEnumerator SpinDropAttack()//Attack last 9 secs
     {
         for (int i = 0; i < TreeSpinDropStuffAmount; i++)
         {
@@ -157,7 +157,7 @@ public class TreeAttacks : MonoBehaviour
         }
     }
 
-    public void TrunkAttack()
+    public void TrunkAttack()//Attack last 1.70 secs
     {
         Rigidbody2D trunkObject = Instantiate(TrunkPrefab, new Vector3(-41.9516f, -15f, 0f), Quaternion.identity);
         
@@ -167,7 +167,7 @@ public class TreeAttacks : MonoBehaviour
         Destroy(trunkObject.gameObject, 3);
     }
 
-    private IEnumerator MoveTrunk(Rigidbody2D trunkRigidbody, Vector3 targetPosition, float duration)
+    public IEnumerator MoveTrunk(Rigidbody2D trunkRigidbody, Vector3 targetPosition, float duration)
     {
         float elapsed_time = 0f;
         Vector3 initialPosition = trunkRigidbody.position;
