@@ -20,7 +20,7 @@ public class TreeAI : MonoBehaviour
     
     private IEnumerator TreesAttacking()
     {
-        //yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(4f);
         while (whispyWoodsL.currentHealth > 0 || whispyWoodsR.currentHealth > 0)
         {
             if (whispyWoodsL.currentHealth > 0 && whispyWoodsR.currentHealth > 0)
