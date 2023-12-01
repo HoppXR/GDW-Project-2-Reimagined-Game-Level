@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  maxHealth: 200
+  maxHealth: 60
   currentHealth: 0
 --- !u!61 &184630564
 BoxCollider2D:
@@ -910,7 +910,7 @@ MonoBehaviour:
   AirAttackDelay: 0.3
   TreeDropStuffAmount: 3
   TreeSpinDropStuffAmount: 10
-  trunkMoveSpeed: 150
+  trunkMoveSpeed: 135
   LeftTreeApplePrefab: {fileID: 325936728603695898, guid: 81f884445b24b5244a41364c4580ba50, type: 3}
   LeftTreeSpikePrefab: {fileID: 835421737299917817, guid: a1e32db68d1ffdb4ab07ee4e484a89fd, type: 3}
   LeftWormSpikePrefab: {fileID: 1776673374556615160, guid: 86f35b98cd06441479e2786b7d4bed15, type: 3}
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  maxHealth: 200
+  maxHealth: 60
   currentHealth: 0
 --- !u!61 &560672287
 BoxCollider2D:
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 660387712}
   - component: {fileID: 660387715}
   m_Layer: 5
-  m_Name: Slider2
+  m_Name: LeftSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1707,6 +1707,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 889127877790146974, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 889127877790146974, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 889127877790146974, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235711253566186571, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235711253566186571, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235711253566186571, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250135401802296358, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250135401802296358, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.3843808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250135401802296358, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.3843808
+      objectReference: {fileID: 0}
     - target: {fileID: 1810906150230480083, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_Name
       value: PauseMenuCanvas 1
@@ -2053,8 +2089,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1389888479}
   - component: {fileID: 1389888482}
-  - component: {fileID: 1389888481}
   - component: {fileID: 1389888480}
+  - component: {fileID: 1389888483}
   m_Layer: 5
   m_Name: KirbyHealth
   m_TagString: Untagged
@@ -2078,11 +2114,11 @@ RectTransform:
   - {fileID: 1304748046}
   m_Father: {fileID: 474396530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1592.9324, y: -851}
-  m_SizeDelta: {x: 356.892, y: 65.929}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 223, y: 88}
+  m_SizeDelta: {x: 356.89197, y: 65.929016}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &1389888480
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2091,20 +2127,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389888478}
   m_CullTransparentMesh: 1
---- !u!114 &1389888481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389888478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47349af0415451e41a153966fee9b1a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 184630563}
-  slider: {fileID: 1389888482}
 --- !u!114 &1389888482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2156,6 +2178,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1389888483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389888478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b55e53408fc2e9499377a26cf2aa83f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1785051750}
+  healthSlider: {fileID: 1389888482}
 --- !u!1 &1453217436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,7 +2384,7 @@ GameObject:
   - component: {fileID: 1564620698}
   - component: {fileID: 1564620697}
   m_Layer: 5
-  m_Name: HEALTH BAR TEST RIGHT
+  m_Name: WhispyHealthBar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2450,7 +2486,7 @@ GameObject:
   - component: {fileID: 1597099938}
   - component: {fileID: 1597099937}
   m_Layer: 5
-  m_Name: HEALTH BAR TEST LEFT
+  m_Name: WhispyHealthBar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2571,11 +2607,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 474396530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -673.6216, y: -341.2835}
-  m_SizeDelta: {x: 505.5462, y: 121.3571}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 59.605347, y: 80.03793}
+  m_SizeDelta: {x: 505.5462, y: 121.35712}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1664476348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2979,11 +3015,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  crouch: 5
+  crouch: 1
   jumpForce: 7
   sprintSpeedMultiplier: 1.5
   pushForce: 10
-  maxHealth: 100
+  maxHealth: 200
   inhaleRadius: 4
   projectilePrefab: {fileID: 3135958280166584395, guid: e7f06c6af6549c147b4f420be124cc15, type: 3}
   projectileSpawnPoint: {fileID: 325628998}
@@ -3186,7 +3222,7 @@ GameObject:
   - component: {fileID: 1933533679}
   - component: {fileID: 1933533682}
   m_Layer: 5
-  m_Name: Slider1
+  m_Name: RightSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
