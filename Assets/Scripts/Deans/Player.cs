@@ -46,17 +46,26 @@ public class Player : MonoBehaviour
     bool isCrouch;
     bool hasDoubleJumped;
 
+    private SpriteRenderer spriteRenderer;
+
 
     void Start()
     {
         InputManager.Init(this);
         InputManager.SetGameControls();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         _moveDirection = Vector2.zero;
 
         currentHealth = maxHealth;
 
         UpdateHealthBar();
+    }
+
+    private void FixedUpdate()
+    {
+        //rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+        spriteRenderer.flipX = rb.velocity.x < 0f;
     }
 
     void Update()
