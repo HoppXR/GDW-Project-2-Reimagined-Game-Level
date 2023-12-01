@@ -208,7 +208,15 @@ public class Player : MonoBehaviour
     {
 
     }
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
 
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
     private void Die()
     {
         Debug.Log("Die method called");
@@ -226,10 +234,6 @@ public class Player : MonoBehaviour
 
         SceneManager.LoadScene("ContinueScreen");
     }
-
-
-
-
     public void Inhale()
     {
         if (!isInhaling && inhaledObject == null)
