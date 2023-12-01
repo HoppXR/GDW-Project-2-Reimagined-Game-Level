@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  maxHealth: 50
+  maxHealth: 200
   currentHealth: 0
 --- !u!61 &184630564
 BoxCollider2D:
@@ -319,7 +319,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10196304, y: 0.0023722053}
+  m_Offset: {x: 0.11035696, y: 0.0023722649}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -330,7 +330,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.130559, y: 2.2038527}
+  m_Size: {x: 1.1137712, y: 2.2038527}
   m_EdgeRadius: 0
 --- !u!212 &184630565
 SpriteRenderer:
@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  maxHealth: 50
+  maxHealth: 200
   currentHealth: 0
 --- !u!61 &560672287
 BoxCollider2D:
@@ -911,7 +911,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10196304, y: 0.0023722053}
+  m_Offset: {x: 0.11040594, y: 0.0023722649}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -922,7 +922,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.130559, y: 2.2038527}
+  m_Size: {x: 1.1136732, y: 2.2038527}
   m_EdgeRadius: 0
 --- !u!212 &560672288
 SpriteRenderer:
@@ -2216,7 +2216,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.007823288}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2227,7 +2227,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.9843534}
   m_EdgeRadius: 0
 --- !u!1 &1564620696
 GameObject:
@@ -2778,7 +2778,7 @@ Transform:
   m_GameObject: {fileID: 1785051746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0014199372, z: -0, w: 0.99999905}
-  m_LocalPosition: {x: -17.42, y: -15.88, z: 0}
+  m_LocalPosition: {x: -17.42, y: -15.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2797,7 +2797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8669b36054e7b840ad9999eb2365901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 12
   crouch: 5
   jumpForce: 7
   sprintSpeedMultiplier: 1.5

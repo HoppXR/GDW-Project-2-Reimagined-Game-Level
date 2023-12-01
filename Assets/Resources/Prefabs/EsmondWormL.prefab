@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 3885935657172607710}
   - component: {fileID: -209655323524757973}
   - component: {fileID: 6159661477867429860}
+  - component: {fileID: -1630462065140124450}
   m_Layer: 8
   m_Name: EsmondWormL
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,3 +178,16 @@ CircleCollider2D:
   m_Offset: {x: -0.050150905, y: -0.009973063}
   serializedVersion: 2
   m_Radius: 0.41503283
+--- !u!114 &-1630462065140124450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359459463426600299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27fdc18b43dcb94c9670ddcc89f4dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 5

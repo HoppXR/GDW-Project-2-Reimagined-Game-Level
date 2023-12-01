@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour
     public Transform projectileSpawnPoint;
     public float inhaleSpeed = 5f;
     public float spitOutSpeed = 10f;
+    private float invulnerabilityDuration = 1.0f;
+
 
     private GameObject inhaledObject;
 
@@ -44,7 +47,6 @@ public class Player : MonoBehaviour
     bool hasDoubleJumped;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         InputManager.Init(this);
@@ -52,14 +54,11 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _moveDirection = Vector2.zero;
 
-        //Get the starting health
         currentHealth = maxHealth;
 
-        //updates the hp bar UI
         UpdateHealthBar();
     }
 
-    // Update is called once per frame
     void Update()
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
@@ -68,18 +67,15 @@ public class Player : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, _moveDirection, 0.1f, LayerMask.GetMask("Walls"));
 
-            // If a wall is detected, adjust the movement
             if (hit.collider != null)
             {
-                _moveDirection = Vector2.zero; // Stop movement
+                _moveDirection = Vector2.zero; 
             }
 
-            // Check if Shift key is pressed to increase speed
             float currentSpeed = isRunning ? speed * sprintSpeedMultiplier : speed;
 
             rb.velocity = new Vector2(currentSpeed * _moveDirection.x, rb.velocity.y);
 
-            // Reset double jump flag when grounded
             if (isGrounded)
             {
                 hasDoubleJumped = false;
@@ -99,13 +95,11 @@ public class Player : MonoBehaviour
 
     public void PlayerJump()
     {       
-        // Regular jump
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         Debug.Log("jump");
 
         if (!hasDoubleJumped)
         {
-            // Double jump with reduced effectiveness
             rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.5f);
             hasDoubleJumped = true;
             Debug.Log("double jump");
@@ -116,7 +110,6 @@ public class Player : MonoBehaviour
     {
         if (!isCrouch)
         {
-            // Reduce the height of the upper and lower halves of kirby
             transform.localScale = new Vector3(1f, 0.5f, 1f);
             Debug.Log("Crouching");
 
@@ -125,7 +118,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            // Restore the original height of the upper and lower halves of kirby
             transform.localScale = new Vector3(1f, 1f, 1f);
             Debug.Log("Standing");
 
@@ -146,45 +138,50 @@ public class Player : MonoBehaviour
     {
         if (isTakingDamage || isBlocking)
         {
-            // If taking damage or blocking, reduce the damage
             damage *= damageReductionMultiplier;
         }
 
-        // Disable movement during damage
         isTakingDamage = true;
 
-        // Subtract damage from current health
         currentHealth -= damage;
 
-        // Ensure health doesn't go below zero
         currentHealth = Mathf.Max(currentHealth, 0f);
 
-        //pushes the player a little bit when getting hurt
         rb.velocity = new Vector2(-Mathf.Sign(_moveDirection.x) * pushForce, rb.velocity.y);
 
-        // Update health bar UI
+        PerformJump(jumpForce);
+
         UpdateHealthBar();
 
         Debug.Log($"Player took {damage} damage. Remaining health: {currentHealth}");
 
-        // Check if the player is dead
         if (currentHealth <= 0f)
         {
             Die();
         }
 
-        // Enable movement after a short delay
         StartCoroutine(EnableMovementAfterDelay(1.0f));
     }
 
-    // enable movement after a delay (being hurt)
     private IEnumerator EnableMovementAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // Reset movement
         isTakingDamage = false;
         _moveDirection = Vector2.zero;
+    }
+
+    private IEnumerator StartInvulnerabilityCountdown()
+    {
+        yield return new WaitForSeconds(invulnerabilityDuration);
+
+        isTakingDamage = false;
+    }
+
+    public void PerformJump(float jumpForce)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        Debug.Log("Jump");
     }
 
     public void ToggleBlock()
@@ -214,20 +211,33 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log("Die method called");
 
+        SceneManager.LoadScene("DeathScreen");
+
+        StartCoroutine(LoadTitleScreenAfterDelay());
     }
+
+    private IEnumerator LoadTitleScreenAfterDelay()
+    {
+        Debug.Log("LoadTitleScreenAfterDelay coroutine started");
+
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene("ContinueScreen");
+    }
+
+
+
 
     public void Inhale()
     {
-        // Check if there's an inhaled object
         if (!isInhaling && inhaledObject == null)
         {
             isMovementEnabled = false;
 
-            // Detect nearby objects
             Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, inhaleRadius);
 
-            // Choose the first object to inhale
             foreach (Collider2D objCollider in nearbyObjects)
             {
                 if (objCollider.CompareTag("Inhalable"))
@@ -264,35 +274,26 @@ public class Player : MonoBehaviour
 
         if (inhaledObject != null && hasInhaled)
         {
-            // Spit out a new projectile
             GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
-            // Get the Rigidbody2D of the projectile
             Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();
 
-            // Ensure SpriteRenderer is enabled
             SpriteRenderer spriteRenderer = newProjectile.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
             {
                 spriteRenderer.enabled = true;
             }
 
-            // Get the direction based on player's facing direction
             Vector2 spitDirection = transform.right * (transform.localScale.x > 0 ? 1 : -1);
 
-            // Apply velocity to the projectile with increased speed
             projectileRb.velocity = spitDirection * spitOutSpeed;
 
-            // Destroy the inhaled object after spitting it out
             Destroy(inhaledObject);
 
-            // Optionally, you can set inhaledObject to null here
             inhaledObject = null;
 
-            // Log a message
             Debug.Log("Spit out an object");
 
-            // Reset the flag to false
             hasInhaled = false;
 
             isMovementEnabled = true;

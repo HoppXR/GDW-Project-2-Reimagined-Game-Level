@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2888055978710014332}
   - component: {fileID: 5041525992731295554}
   - component: {fileID: 7585825413423108008}
+  - component: {fileID: 1298954889934342103}
   m_Layer: 8
   m_Name: EsmondAppleR
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,3 +178,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7679719d434154399b0fc489d3160e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1298954889934342103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367032007392525961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27fdc18b43dcb94c9670ddcc89f4dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
