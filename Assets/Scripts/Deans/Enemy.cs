@@ -1,17 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public float damageAmount = 10f;
     [SerializeField] public float maxHealth = 50f;
     public float currentHealth;
+    public string enemyID;
+    private bool isDefeated = false;
 
+    private SpriteRenderer spriteRenderer;
+
+    public Sprite defeatedSprite;
+
+    public ParticleSystem defeatParticles;
+
+    public AudioClip defeatSound;
+
+    private static HashSet<string> remainingEnemies = new HashSet<string>();
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        remainingEnemies.Add(enemyID);
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -23,7 +39,7 @@ public class Enemy : MonoBehaviour
             {
                 player.TakeDamage(damageAmount);
 
-                Debug.Log($"Enemy took {damageAmount} damage. Remaining health: {currentHealth}");
+                Debug.Log($"Enemy {enemyID} took {damageAmount} damage. Remaining health: {currentHealth}");
             }
         }
     }
@@ -32,7 +48,12 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
 
-        Debug.Log($"Enemy took {damage} damage. Remaining health: {currentHealth}");
+        Debug.Log($"Enemy {enemyID} took {damage} damage. Remaining health: {currentHealth}");
+
+        if (isDefeated)
+        {
+            return;
+        }
 
         if (currentHealth <= 0)
         {
@@ -42,14 +63,35 @@ public class Enemy : MonoBehaviour
 
     public float GetHealthPercentage()
     {
-        // Return the health percentage (between 0 and 1)
         return currentHealth / maxHealth;
     }
 
     private void Die()
     {
-        Debug.Log("Enemy defeated!");
-        // need to add animation
-        //Destroy(gameObject);
+        Debug.Log($"Enemy {enemyID} defeated!");
+
+        isDefeated=true;
+
+        if (defeatParticles != null)
+        {
+            Instantiate(defeatParticles, transform.position, Quaternion.identity);
+        }
+
+        if (defeatSound != null)
+        {
+            AudioSource.PlayClipAtPoint(defeatSound, transform.position);
+        }
+
+        if (defeatedSprite != null && spriteRenderer != null)
+        {
+            spriteRenderer.sprite = defeatedSprite;
+        }
+
+        remainingEnemies.Remove(enemyID);
+
+        if (remainingEnemies.Count <= 0)
+        {
+            SceneManager.LoadScene("Phase2Scene");
+        }
     }
 }

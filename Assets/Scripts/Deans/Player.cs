@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
 
     private bool isInhaling = false;
     private bool hasInhaled = false;
+    private bool isDying = false;
+
 
     [SerializeField] private Image healthBar;
 
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
     bool isGrounded;
     bool isCrouch;
     bool hasDoubleJumped;
+
 
     private AudioClip lastPlayedHurtSound;
 
