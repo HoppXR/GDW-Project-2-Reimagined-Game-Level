@@ -142,7 +142,6 @@ public class Player : MonoBehaviour
     {
         if (!isCrouch)
         {
-            transform.localScale = new Vector3(1f, 0.5f, 1f);
             Debug.Log("Crouching");
 
             isCrouch = true;
@@ -150,7 +149,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
             Debug.Log("Standing");
 
             BoxCollider2D collider = GetComponent<BoxCollider2D>();

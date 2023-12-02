@@ -11,10 +11,8 @@ public class KirbyAnimation : MonoBehaviour
     void Update()
     {
         jumpAni();
+        crouchAni();
         movingAni();
-
-        bool isCrouch = Input.GetButton("Crouch");
-        animator.SetBool("IsCrouching", isCrouch);
     }
 
     private bool IsGrounded()
@@ -44,6 +42,18 @@ public class KirbyAnimation : MonoBehaviour
         else if(!IsGrounded())
         {
             animator.SetBool("IsJumping", true);
+        }
+    }
+
+    void crouchAni()
+    {
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.C))
+        {
+            animator.SetBool("IsCrouching", true);
+        }
+        else if(Input.GetKeyUp(KeyCode.C))
+        {
+            animator.SetBool("IsCrouching", false);
         }
     }
 }
