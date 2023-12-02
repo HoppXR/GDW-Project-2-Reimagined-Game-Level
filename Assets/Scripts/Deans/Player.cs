@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-
 public class Player : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -25,7 +24,6 @@ public class Player : MonoBehaviour
     public float spitOutSpeed = 10f;
     private float invulnerabilityDuration = 1.0f;
 
-
     private GameObject inhaledObject;
 
     private bool isMovementEnabled = true;
@@ -35,7 +33,6 @@ public class Player : MonoBehaviour
     private float damageReductionMultiplier = 0.5f;
 
     private bool isInhaling = false;
-
     private bool hasInhaled = false;
 
     [SerializeField] private Image healthBar;
@@ -46,7 +43,18 @@ public class Player : MonoBehaviour
     bool isCrouch;
     bool hasDoubleJumped;
 
+    private AudioClip lastPlayedHurtSound;
+
     private SpriteRenderer spriteRenderer;
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip jumpSoundClip;
+    [SerializeField] private AudioClip inhaleSoundClip;
+    [SerializeField] private AudioClip[] hurtSounds;
+    [SerializeField] private AudioClip exhaleSoundClip;
+    [SerializeField] private AudioClip crouchSoundClip;
+
+    private AudioSource inhaleAudioSource;
 
 
     void Start()
@@ -59,12 +67,16 @@ public class Player : MonoBehaviour
 
         currentHealth = maxHealth;
 
+        inhaleAudioSource = gameObject.AddComponent<AudioSource>();
+        inhaleAudioSource.clip = inhaleSoundClip;
+        inhaleAudioSource.loop = true; 
+        inhaleAudioSource.playOnAwake = false;
+
         UpdateHealthBar();
     }
 
     private void FixedUpdate()
     {
-        //rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
         spriteRenderer.flipX = rb.velocity.x < 0f;
     }
 
@@ -78,7 +90,7 @@ public class Player : MonoBehaviour
 
             if (hit.collider != null)
             {
-                _moveDirection = Vector2.zero; 
+                _moveDirection = Vector2.zero;
             }
 
             float currentSpeed = isRunning ? speed * sprintSpeedMultiplier : speed;
@@ -103,7 +115,7 @@ public class Player : MonoBehaviour
     }
 
     public void PlayerJump()
-    {       
+    {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         Debug.Log("jump");
 
@@ -113,6 +125,8 @@ public class Player : MonoBehaviour
             hasDoubleJumped = true;
             Debug.Log("double jump");
         }
+
+        if (jumpSoundClip != null) AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position);
     }
 
     public void PlayerCrouch()
@@ -130,9 +144,6 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
             Debug.Log("Standing");
 
-            isCrouch = false;
-            Debug.Log("Standing");
-
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
             if (collider != null)
             {
@@ -141,6 +152,8 @@ public class Player : MonoBehaviour
 
             isCrouch = false;
         }
+
+        if (crouchSoundClip != null) AudioSource.PlayClipAtPoint(crouchSoundClip, transform.position);
     }
 
     public void TakeDamage(float damage)
@@ -169,7 +182,30 @@ public class Player : MonoBehaviour
             Die();
         }
 
-        StartCoroutine(EnableMovementAfterDelay(1.0f));
+        if (hurtSounds.Length > 0)
+        {
+            AudioClip randomHurtSound = GetRandomUniqueHurtSound();
+            if (randomHurtSound != null) AudioSource.PlayClipAtPoint(randomHurtSound, transform.position);
+        }
+    }
+
+    private AudioClip GetRandomUniqueHurtSound()
+    {
+        if (hurtSounds.Length == 1)
+        {
+            return hurtSounds[0];
+        }
+
+        AudioClip randomHurtSound;
+        do
+        {
+            int randomIndex = Random.Range(0, hurtSounds.Length);
+            randomHurtSound = hurtSounds[randomIndex];
+        } while (randomHurtSound == lastPlayedHurtSound);
+
+        lastPlayedHurtSound = randomHurtSound;
+
+        return randomHurtSound;
     }
 
     private IEnumerator EnableMovementAfterDelay(float delay)
@@ -178,13 +214,6 @@ public class Player : MonoBehaviour
 
         isTakingDamage = false;
         _moveDirection = Vector2.zero;
-    }
-
-    private IEnumerator StartInvulnerabilityCountdown()
-    {
-        yield return new WaitForSeconds(invulnerabilityDuration);
-
-        isTakingDamage = false;
     }
 
     public void PerformJump(float jumpForce)
@@ -217,6 +246,7 @@ public class Player : MonoBehaviour
     {
 
     }
+
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -226,6 +256,7 @@ public class Player : MonoBehaviour
     {
         return maxHealth;
     }
+
     private void Die()
     {
         Debug.Log("Die method called");
@@ -243,11 +274,18 @@ public class Player : MonoBehaviour
 
         SceneManager.LoadScene("ContinueScreen");
     }
+
     public void Inhale()
     {
-        if (!isInhaling && inhaledObject == null)
+        if (!isInhaling)
         {
             isMovementEnabled = false;
+            rb.velocity = Vector2.zero;
+
+            if (inhaleAudioSource != null)
+            {
+                inhaleAudioSource.Play();
+            }
 
             Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, inhaleRadius);
 
@@ -274,11 +312,18 @@ public class Player : MonoBehaviour
             Debug.Log("Inhaling");
         }
     }
+
     public void StopInhaling()
     {
         isInhaling = false;
-        Debug.Log("Stopped Inhaling");
         isMovementEnabled = true;
+
+        if (inhaleAudioSource != null)
+        {
+            inhaleAudioSource.Stop();
+        }
+
+        Debug.Log("Stopped Inhaling");
     }
 
     public void SpitOut()
@@ -287,6 +332,8 @@ public class Player : MonoBehaviour
 
         if (inhaledObject != null && hasInhaled)
         {
+            if (exhaleSoundClip != null) AudioSource.PlayClipAtPoint(exhaleSoundClip, transform.position);
+
             GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
 
             Rigidbody2D projectileRb = newProjectile.GetComponent<Rigidbody2D>();
