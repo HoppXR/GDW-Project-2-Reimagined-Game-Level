@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
 
     private bool isInhaling = false;
     private bool hasInhaled = false;
+    private bool isDying = false;
+
 
     [SerializeField] private Image healthBar;
 
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
     bool isGrounded;
     bool isCrouch;
     bool hasDoubleJumped;
+
 
     private AudioClip lastPlayedHurtSound;
 
@@ -53,8 +56,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip[] hurtSounds;
     [SerializeField] private AudioClip exhaleSoundClip;
     [SerializeField] private AudioClip crouchSoundClip;
+    [SerializeField] private AudioClip deathSoundClip;
 
     private AudioSource inhaleAudioSource;
+    private AudioSource deathAudioSource;
 
 
     void Start()
@@ -71,6 +76,10 @@ public class Player : MonoBehaviour
         inhaleAudioSource.clip = inhaleSoundClip;
         inhaleAudioSource.loop = true; 
         inhaleAudioSource.playOnAwake = false;
+
+        deathAudioSource = gameObject.AddComponent<AudioSource>();
+        deathAudioSource.clip = deathSoundClip;
+        deathAudioSource.playOnAwake = false;
 
         UpdateHealthBar();
     }
@@ -133,7 +142,6 @@ public class Player : MonoBehaviour
     {
         if (!isCrouch)
         {
-            transform.localScale = new Vector3(1f, 0.5f, 1f);
             Debug.Log("Crouching");
 
             isCrouch = true;
@@ -141,7 +149,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
             Debug.Log("Standing");
 
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
@@ -259,6 +266,11 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        if (deathSoundClip != null)
+        {
+            deathAudioSource.Play();
+        }
+
         Debug.Log("Die method called");
 
         SceneManager.LoadScene("DeathScreen");

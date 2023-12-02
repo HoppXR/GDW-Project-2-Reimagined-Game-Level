@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 184630567}
   - component: {fileID: 184630571}
   m_Layer: 7
-  m_Name: Whispy Woods 1
+  m_Name: Whispy Woods R
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,6 +292,10 @@ MonoBehaviour:
   damageAmount: 10
   maxHealth: 60
   currentHealth: 0
+  enemyID: WhispyR
+  defeatedSprite: {fileID: 21300000, guid: 8f8eea7b8e5a5dd4b84e491b04cee035, type: 3}
+  defeatParticles: {fileID: 0}
+  defeatSound: {fileID: 8300000, guid: 5dd53fa57544d9c4e8591d0f39a4b4a6, type: 3}
 --- !u!61 &184630564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1028,8 +1032,8 @@ RectTransform:
   m_GameObject: {fileID: 474396529}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1389888479}
   - {fileID: 1664476347}
@@ -1037,8 +1041,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 985.6667, y: 482}
-  m_SizeDelta: {x: 1971.3334, y: 964}
+  m_AnchoredPosition: {x: 510, y: 270}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &474396531
 MonoBehaviour:
@@ -1138,9 +1142,13 @@ MonoBehaviour:
   AirTravelSpeed: 10
   AirAttackAmount: 10
   AirAttackDelay: 0.3
+  airAttackSound: {fileID: 8300000, guid: 66116c6ac35506c4292191cf4abf902e, type: 3}
   TreeDropStuffAmount: 3
   TreeSpinDropStuffAmount: 10
+  dropObjectSound: {fileID: 8300000, guid: f8e51e346d993614782b2c8e75a6dbcb, type: 3}
+  fallSound: {fileID: 0}
   trunkMoveSpeed: 135
+  trunkAttackSound: {fileID: 8300000, guid: f40eb6ba24ec7d342829e40f5bfdfce1, type: 3}
   LeftTreeApplePrefab: {fileID: 325936728603695898, guid: 81f884445b24b5244a41364c4580ba50, type: 3}
   LeftTreeSpikePrefab: {fileID: 835421737299917817, guid: a1e32db68d1ffdb4ab07ee4e484a89fd, type: 3}
   LeftWormSpikePrefab: {fileID: 1776673374556615160, guid: 86f35b98cd06441479e2786b7d4bed15, type: 3}
@@ -1270,7 +1278,7 @@ GameObject:
   - component: {fileID: 560672291}
   - component: {fileID: 560672290}
   m_Layer: 7
-  m_Name: Whispy Woods 2
+  m_Name: Whispy Woods L
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1291,6 +1299,10 @@ MonoBehaviour:
   damageAmount: 10
   maxHealth: 60
   currentHealth: 0
+  enemyID: WhispyL
+  defeatedSprite: {fileID: 21300000, guid: 8f8eea7b8e5a5dd4b84e491b04cee035, type: 3}
+  defeatParticles: {fileID: 0}
+  defeatSound: {fileID: 8300000, guid: 5dd53fa57544d9c4e8591d0f39a4b4a6, type: 3}
 --- !u!61 &560672287
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1611,8 +1623,8 @@ RectTransform:
   m_GameObject: {fileID: 660387710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1983982298}
   - {fileID: 1719249090}
@@ -1620,7 +1632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 471, y: 79.4}
+  m_AnchoredPosition: {x: 125, y: 0}
   m_SizeDelta: {x: 350, y: 45}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &660387712
@@ -2123,39 +2135,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 889127877790146974, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.3843808
+      value: 6.1067767
       objectReference: {fileID: 0}
     - target: {fileID: 889127877790146974, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.3843808
+      value: 6.1067767
       objectReference: {fileID: 0}
     - target: {fileID: 889127877790146974, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.3843808
+      value: 6.1067767
+      objectReference: {fileID: 0}
+    - target: {fileID: 889127877790146974, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -400
       objectReference: {fileID: 0}
     - target: {fileID: 1235711253566186571, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.3843808
+      value: 6.1067767
       objectReference: {fileID: 0}
     - target: {fileID: 1235711253566186571, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.3843808
+      value: 6.1067767
       objectReference: {fileID: 0}
     - target: {fileID: 1235711253566186571, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.3843808
+      value: 6.1067767
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235711253566186571, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1250135401802296358, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.3843808
+      value: 6.1067767
       objectReference: {fileID: 0}
     - target: {fileID: 1250135401802296358, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.3843808
+      value: 6.1067767
       objectReference: {fileID: 0}
     - target: {fileID: 1250135401802296358, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.3843808
+      value: 6.1067767
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250135401802296358, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 442
       objectReference: {fileID: 0}
     - target: {fileID: 1810906150230480083, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_Name
@@ -2164,6 +2188,12 @@ PrefabInstance:
     - target: {fileID: 1810906150230480083, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914135516473207840, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
+      propertyPath: m_Text
+      value: 'Controls
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 6419851033717129665, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2401,10 +2431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2530,8 +2560,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 543, y: 220}
-  m_SizeDelta: {x: 356.89197, y: 65.929016}
+  m_AnchoredPosition: {x: 588.4016, y: 220}
+  m_SizeDelta: {x: 328.662, y: 65.929}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1389888480
 CanvasRenderer:
@@ -2884,9 +2914,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -934.3333, y: -598}
-  m_SizeDelta: {x: 1971.3335, y: 964}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1920, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &1597099936
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,8 +3016,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -116}
-  m_SizeDelta: {x: 1971.3334, y: 964}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1664476346
 GameObject:
@@ -3091,9 +3121,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 848572fd014168041939dd9c2009d202, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f00a8759ee807cd468bec8d558a106af, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.127
+  m_Volume: 0.096
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3312,7 +3342,7 @@ Transform:
   m_GameObject: {fileID: 1785051746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0014199372, z: -0, w: 0.99999905}
-  m_LocalPosition: {x: -17.42, y: -15.98, z: 0}
+  m_LocalPosition: {x: -16.24, y: -16.15, z: 0.016362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3343,15 +3373,16 @@ MonoBehaviour:
   inhaleSpeed: 2
   spitOutSpeed: 35
   healthBar: {fileID: 0}
-  jumpSoundClip: {fileID: 8300000, guid: bd8c10de6c2bdb140b01f5af1ffe294b, type: 3}
-  inhaleSoundClip: {fileID: 8300000, guid: 096f68235279cdf45a2471854ccfb756, type: 3}
+  jumpSoundClip: {fileID: 8300000, guid: d7a81f6042fdd0047ab0dba670e155b3, type: 3}
+  inhaleSoundClip: {fileID: 8300000, guid: 5ffde52c8dd128645b67b70a04919497, type: 3}
   hurtSounds:
-  - {fileID: 8300000, guid: c2c98e792b4727248a6afa9d5605b6c5, type: 3}
+  - {fileID: 8300000, guid: e3eceb934d48984428310e80dc4dd526, type: 3}
   - {fileID: 8300000, guid: b41ea5971a78d5040aa8adbb86d43a16, type: 3}
   - {fileID: 8300000, guid: 482c67ba9b4a1b04094b80fadc3d24d5, type: 3}
   - {fileID: 8300000, guid: e6f2e9e41b914bd4487b9e308883c81f, type: 3}
   exhaleSoundClip: {fileID: 8300000, guid: 22be00b274c89094f806d596a9504948, type: 3}
   crouchSoundClip: {fileID: 8300000, guid: 664a73ff3177ccc4c90602d612465486, type: 3}
+  deathSoundClip: {fileID: 8300000, guid: d65ae7146551f69408f316e3fa78e0ed, type: 3}
 --- !u!50 &1785051751
 Rigidbody2D:
   serializedVersion: 4
@@ -3459,6 +3490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd33f0a309a466c49a0b51bf4ae6e0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   animator: {fileID: 1785051754}
 --- !u!1 &1873030794
 GameObject:
@@ -3563,7 +3597,7 @@ RectTransform:
   m_GameObject: {fileID: 1933533677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1057845092}
@@ -3572,9 +3606,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -495, y: 96.2}
+  m_AnchoredPosition: {x: -500, y: 0}
   m_SizeDelta: {x: 350, y: 45}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1933533679
 MonoBehaviour:
   m_ObjectHideFlags: 0

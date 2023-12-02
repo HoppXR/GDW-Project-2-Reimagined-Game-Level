@@ -4,33 +4,56 @@ using UnityEngine;
 
 public class KirbyAnimation : MonoBehaviour
 {
+    public LayerMask groundLayer;
+    
     public Animator animator;
-    private bool isGrounded;
 
     void Update()
     {
-        CheckGrounded();
+        jumpAni();
+        crouchAni();
+        movingAni();
+    }
 
+    private bool IsGrounded()
+    {
+        Vector2 raycastOrigin = transform.position - new Vector3(0f,1f,0f);
+
+        RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, 0.2f, groundLayer);
+
+        Debug.DrawRay(raycastOrigin,Vector2.down * 0.2f, Color.red);
+
+        return hit.collider != null;
+    }
+
+    void movingAni()
+    {
         float horizontalMove = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+    }
 
-        if (Input.GetButtonDown("Jump") && !isGrounded)
-        {
-            animator.SetBool("IsJumping", true);
-        }
-
-        if(isGrounded)
+    void jumpAni()
+    {
+        if (IsGrounded())
         {
             animator.SetBool("IsJumping", false);
             Debug.Log("ON GROUND");
         }
-
-        bool isCrouch = Input.GetButton("Crouch");
-        animator.SetBool("IsCrouching", isCrouch);
+        else if(!IsGrounded())
+        {
+            animator.SetBool("IsJumping", true);
+        }
     }
 
-    void CheckGrounded()
+    void crouchAni()
     {
-        
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.C))
+        {
+            animator.SetBool("IsCrouching", true);
+        }
+        else if(Input.GetKeyUp(KeyCode.C))
+        {
+            animator.SetBool("IsCrouching", false);
+        }
     }
 }
