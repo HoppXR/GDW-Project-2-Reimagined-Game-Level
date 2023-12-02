@@ -9,7 +9,7 @@ public class KirbyAnimation : MonoBehaviour
     public Animator animator;
 
     void Update()
-    {   
+    {
         jumpAni();
         movingAni();
 
@@ -22,6 +22,8 @@ public class KirbyAnimation : MonoBehaviour
         Vector2 raycastOrigin = transform.position - new Vector3(0f,1f,0f);
 
         RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, 0.2f, groundLayer);
+
+        Debug.DrawRay(raycastOrigin,Vector2.down * 0.2f, Color.red);
 
         return hit.collider != null;
     }
