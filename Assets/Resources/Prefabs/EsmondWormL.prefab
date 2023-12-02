@@ -131,6 +131,7 @@ MonoBehaviour:
   bounceSpeed: 25
   bounceDistance: 6
   spinSpeed: 3000
+  bounceSound: {fileID: 8300000, guid: 129125264c31a4d40bba3dfb8d02f771, type: 3}
 --- !u!114 &-209655323524757973
 MonoBehaviour:
   m_ObjectHideFlags: 0
