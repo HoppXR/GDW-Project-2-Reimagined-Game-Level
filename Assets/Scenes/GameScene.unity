@@ -2530,8 +2530,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 543, y: 220}
-  m_SizeDelta: {x: 356.89197, y: 65.929016}
+  m_AnchoredPosition: {x: 588.4016, y: 220}
+  m_SizeDelta: {x: 328.662, y: 65.929}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1389888480
 CanvasRenderer:
@@ -3352,6 +3352,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e6f2e9e41b914bd4487b9e308883c81f, type: 3}
   exhaleSoundClip: {fileID: 8300000, guid: 22be00b274c89094f806d596a9504948, type: 3}
   crouchSoundClip: {fileID: 8300000, guid: 664a73ff3177ccc4c90602d612465486, type: 3}
+  deathSoundClip: {fileID: 8300000, guid: d65ae7146551f69408f316e3fa78e0ed, type: 3}
 --- !u!50 &1785051751
 Rigidbody2D:
   serializedVersion: 4

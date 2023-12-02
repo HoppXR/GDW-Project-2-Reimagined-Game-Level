@@ -10,13 +10,12 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("IntroScene");
     }
 
     public void QuitGame()
     {
         Debug.Log("Quit Button Clicked");
-        // Quit the application it works in builds, not in the editor
         #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
         #else

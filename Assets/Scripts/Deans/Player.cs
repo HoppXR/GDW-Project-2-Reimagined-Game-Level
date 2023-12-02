@@ -53,8 +53,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip[] hurtSounds;
     [SerializeField] private AudioClip exhaleSoundClip;
     [SerializeField] private AudioClip crouchSoundClip;
+    [SerializeField] private AudioClip deathSoundClip;
 
     private AudioSource inhaleAudioSource;
+    private AudioSource deathAudioSource;
 
 
     void Start()
@@ -71,6 +73,10 @@ public class Player : MonoBehaviour
         inhaleAudioSource.clip = inhaleSoundClip;
         inhaleAudioSource.loop = true; 
         inhaleAudioSource.playOnAwake = false;
+
+        deathAudioSource = gameObject.AddComponent<AudioSource>();
+        deathAudioSource.clip = deathSoundClip;
+        deathAudioSource.playOnAwake = false;
 
         UpdateHealthBar();
     }
@@ -259,6 +265,11 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        if (deathSoundClip != null)
+        {
+            deathAudioSource.Play();
+        }
+
         Debug.Log("Die method called");
 
         SceneManager.LoadScene("DeathScreen");
