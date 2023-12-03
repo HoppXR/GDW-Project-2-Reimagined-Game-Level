@@ -30,6 +30,15 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        if (remainingEnemies.Count <= 0)
+        {
+            Debug.Log("Both enemies defeated!");
+            SceneManager.LoadScene("Phase2Scene");
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
