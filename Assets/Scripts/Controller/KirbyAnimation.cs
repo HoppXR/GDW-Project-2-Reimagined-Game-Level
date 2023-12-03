@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class KirbyAnimation : MonoBehaviour
@@ -9,18 +8,11 @@ public class KirbyAnimation : MonoBehaviour
     
     public Animator animator;
 
-    private float horizontalMove;
-
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal");
-
-        InhaleAni();
-        BlockAni();
-
-        MovingAni();
-        JumpAni();
-        CrouchAni();
+        jumpAni();
+        crouchAni();
+        movingAni();
     }
 
     private bool IsGrounded()
@@ -34,21 +26,13 @@ public class KirbyAnimation : MonoBehaviour
         return hit.collider != null;
     }
 
-    void MovingAni()
+    void movingAni()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            animator.SetBool("IsSprinting", true);
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            animator.SetBool("IsSprinting", false);
-        }
-        
+        float horizontalMove = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
     }
 
-    void JumpAni()
+    void jumpAni()
     {
         if (IsGrounded())
         {
@@ -60,39 +44,15 @@ public class KirbyAnimation : MonoBehaviour
         }
     }
 
-    void CrouchAni()
+    void crouchAni()
     {
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.C) && horizontalMove == 0)
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.C))
         {
             animator.SetBool("IsCrouching", true);
         }
         else if(Input.GetKeyUp(KeyCode.C))
         {
             animator.SetBool("IsCrouching", false);
-        }
-    }
-
-    void BlockAni()
-    {  
-        if (IsGrounded() && Input.GetMouseButtonDown(2) && horizontalMove == 0)
-        {
-            animator.SetBool("IsBlocking", true);
-        }
-        else if(Input.GetMouseButtonUp(2))
-        {
-            animator.SetBool("IsBlocking", false);
-        }
-    }
-
-    void InhaleAni()
-    {
-        if (IsGrounded() && Input.GetMouseButtonDown(1) && horizontalMove == 0)
-        {
-            animator.SetBool("IsInhaling", true);
-        }
-        else if(Input.GetMouseButtonUp(1))
-        {
-            animator.SetBool("IsInhaling", false);
         }
     }
 }
