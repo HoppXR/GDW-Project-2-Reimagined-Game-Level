@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Projectile
   - Air
+  - Trunk
   layers:
   - Default
   - TransparentFX

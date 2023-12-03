@@ -55,9 +55,24 @@ public class DamageOnCollision : MonoBehaviour
                     isPlayerInvulnerable = true;
                     playerInvulnerabilityTime = 1f; // Adjust the time the player is invulnerable
 
-                    // Destroy the projectile after bouncing
-                    Destroy(gameObject, 0.2f); // Adjust the time to control how long it stays after bouncing
+                    if (gameObject.CompareTag("Trunk"))
+                    {
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        // Destroy the projectile after bouncing
+                        Destroy(gameObject, 0.2f); // Adjust the time to control how long it stays after bouncing
+                    }
                 }
+            }
+        }
+        if (gameObject.CompareTag("Air"))
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                // Destroy the object
+                Destroy(gameObject);
             }
         }
     }
