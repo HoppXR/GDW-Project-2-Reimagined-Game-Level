@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class ChangeSceneOnTimer : MonoBehaviour
 {
+    [SerializeField] private float nextSceneTime;
     public Animator transition;
 
-    public float changeTime;
+    [SerializeField] private float changeTime;
 
     private bool transitionStarted = false;
 
@@ -37,7 +38,7 @@ public class ChangeSceneOnTimer : MonoBehaviour
     {
         transition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(nextSceneTime);
 
         SceneManager.LoadScene(levelIndex);
     }
