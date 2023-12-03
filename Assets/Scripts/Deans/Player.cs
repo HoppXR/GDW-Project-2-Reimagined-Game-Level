@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     private bool isInhaling = false;
     private bool hasInhaled = false;
     private bool isDying = false;
-
+    private bool isJumping = false;
 
     [SerializeField] private Image healthBar;
 
@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
     bool isCrouch;
     bool hasDoubleJumped;
 
+    public AudioSource audioPlayer;
+
+    public AudioSource trunkSound;
 
     private AudioClip lastPlayedHurtSound;
 
@@ -83,7 +86,6 @@ public class Player : MonoBehaviour
         deathAudioSource.clip = deathSoundClip;
         deathAudioSource.playOnAwake = false;
 
-        UpdateHealthBar();
     }
 
     private void FixedUpdate()
@@ -115,6 +117,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.tag == "Projectile")
+        {
+            audioPlayer.Play();
+        }
+    }
+
+    public void TrunkSound(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Trunk")
+        {
+            audioPlayer.Play();
+        }
+    }
+
     public void TogglePlayerInput(bool enable)
     {
         isMovementEnabled = enable;
@@ -127,32 +145,45 @@ public class Player : MonoBehaviour
 
     public void PlayerJump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        Debug.Log("jump");
-
-        if (!hasDoubleJumped)
+        if (!isJumping)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.5f);
-            hasDoubleJumped = true;
-            Debug.Log("double jump");
-        }
+            isJumping = true;
 
-        if (jumpSoundClip != null) AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position);
+            if (!hasDoubleJumped)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.5f);
+                hasDoubleJumped = true;
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
+
+            if (jumpSoundClip != null)
+            {
+                AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position);
+            }
+
+            StartCoroutine(ResetJumpFlag());
+        }
+    }
+
+    private IEnumerator ResetJumpFlag()
+    {
+        // Wait for a short duration before allowing another jump
+        yield return new WaitForSeconds(0.1f);
+        isJumping = false;
     }
 
     public void PlayerCrouch()
     {
         if (!isCrouch)
         {
-            Debug.Log("Crouching");
 
             isCrouch = true;
-            Debug.Log("Crouch");
         }
         else
         {
-            Debug.Log("Standing");
-
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
             if (collider != null)
             {
@@ -181,10 +212,6 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(-Mathf.Sign(_moveDirection.x) * pushForce, rb.velocity.y);
 
         PerformJump(jumpForce);
-
-        UpdateHealthBar();
-
-        Debug.Log($"Player took {damage} damage. Remaining health: {currentHealth}");
 
         if (currentHealth <= 0f)
         {
@@ -228,7 +255,6 @@ public class Player : MonoBehaviour
     public void PerformJump(float jumpForce)
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        Debug.Log("Jump");
     }
 
     public void ToggleBlock()
@@ -237,13 +263,8 @@ public class Player : MonoBehaviour
 
         if (isBlocking)
         {
-            Debug.Log("Blocking enabled");
 
             if (blockSoundClip != null) AudioSource.PlayClipAtPoint(blockSoundClip, transform.position);
-        }
-        else
-        {
-            Debug.Log("Blocking disabled");
         }
     }
 
@@ -251,12 +272,6 @@ public class Player : MonoBehaviour
     public void StopBlocking()
     {
         isBlocking = false;
-        Debug.Log("Blocking stopped");
-    }
-
-    private void UpdateHealthBar()
-    {
-
     }
 
     public float GetCurrentHealth()
@@ -276,7 +291,6 @@ public class Player : MonoBehaviour
             deathAudioSource.Play();
         }
 
-        Debug.Log("Die method called");
 
         SceneManager.LoadScene("DeathScreen");
 
@@ -285,7 +299,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator LoadTitleScreenAfterDelay()
     {
-        Debug.Log("LoadTitleScreenAfterDelay coroutine started");
 
         yield return new WaitForSeconds(2f);
 
@@ -313,8 +326,6 @@ public class Player : MonoBehaviour
                     inhaledObject = objCollider.gameObject;
                     Rigidbody2D inhaledRb = inhaledObject.GetComponent<Rigidbody2D>();
 
-                    Debug.Log("Inhaled object: " + inhaledObject.name);
-
                     inhaledObject.GetComponent<Renderer>().enabled = false;
 
                     inhaledRb.isKinematic = true;
@@ -326,7 +337,6 @@ public class Player : MonoBehaviour
             }
 
             isInhaling = true;
-            Debug.Log("Inhaling");
         }
     }
 
@@ -340,13 +350,10 @@ public class Player : MonoBehaviour
             inhaleAudioSource.Stop();
         }
 
-        Debug.Log("Stopped Inhaling");
     }
 
     public void SpitOut()
     {
-        Debug.Log("SpitOut method called");
-
         if (inhaledObject != null && hasInhaled)
         {
             if (exhaleSoundClip != null) AudioSource.PlayClipAtPoint(exhaleSoundClip, transform.position);
@@ -368,8 +375,6 @@ public class Player : MonoBehaviour
             Destroy(inhaledObject);
 
             inhaledObject = null;
-
-            Debug.Log("Spit out an object");
 
             hasInhaled = false;
 

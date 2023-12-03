@@ -37,7 +37,6 @@ public class KirbyAnimation : MonoBehaviour
         if (IsGrounded())
         {
             animator.SetBool("IsJumping", false);
-            Debug.Log("ON GROUND");
         }
         else if(!IsGrounded())
         {

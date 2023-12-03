@@ -48,7 +48,6 @@ public class TreeAttacks : MonoBehaviour
     
     private void Start()
     {
-        // Ensure there is an AudioSource component on the GameObject
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {

@@ -23,7 +23,6 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit Button Clicked");
         PlayButtonClickSound();
 
         #if UNITY_EDITOR

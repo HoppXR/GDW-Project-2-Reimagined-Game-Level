@@ -34,7 +34,6 @@ public class Enemy : MonoBehaviour
     {
         if (remainingEnemies.Count <= 0)
         {
-            Debug.Log("Both enemies defeated!");
             SceneManager.LoadScene("Phase2Scene");
         }
     }
@@ -48,7 +47,6 @@ public class Enemy : MonoBehaviour
             {
                 player.TakeDamage(damageAmount);
 
-                Debug.Log($"Enemy {enemyID} took {damageAmount} damage. Remaining health: {currentHealth}");
             }
         }
     }
@@ -57,7 +55,6 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
 
-        Debug.Log($"Enemy {enemyID} took {damage} damage. Remaining health: {currentHealth}");
 
         if (isDefeated)
         {
@@ -77,7 +74,6 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log($"Enemy {enemyID} defeated!");
 
         isDefeated=true;
 
