@@ -29,8 +29,6 @@ public class KirbyAnimation : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.down, 0.2f, groundLayer);
 
-        Debug.DrawRay(raycastOrigin,Vector2.down * 0.2f, Color.red);
-
         return hit.collider != null;
     }
 
@@ -88,10 +86,18 @@ public class KirbyAnimation : MonoBehaviour
         if (IsGrounded() && Input.GetMouseButtonDown(1))
         {
             animator.SetBool("IsInhaling", true);
+
+            Invoke("Inhaling", 0.5f);
         }
         else if(Input.GetMouseButtonUp(1))
         {
             animator.SetBool("IsInhaling", false);
+            animator.SetBool("Inhaling", false);
         }
+    }
+
+    void Inhaling()
+    {
+        animator.SetBool("Inhaling", true);
     }
 }
