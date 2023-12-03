@@ -32,7 +32,6 @@ public class HealthBar : MonoBehaviour
     {
         if (enemy != null && slider != null)
         {
-            // temp healthbar
             float fillValue = enemy.currentHealth / enemy.maxHealth;
             slider.value = fillValue;
         }

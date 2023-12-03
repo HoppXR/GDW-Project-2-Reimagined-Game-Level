@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9486ad3c982440c41acf4d764a78f1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 35
+  changeTime: 5
   sceneName: Phase2Scene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

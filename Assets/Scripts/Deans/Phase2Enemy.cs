@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
+public class Phase2Enemy : MonoBehaviour
 {
     [SerializeField] public float damageAmount = 10f;
     [SerializeField] public float maxHealth = 50f;
@@ -30,13 +30,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        if (currentSceneName == "Phase2Scene" && defeatedEnemiesCount >= 1)
-        {
-            SceneManager.LoadScene("WhispyDeathScene");
-        }
-        else if (currentSceneName == "GameScene" && defeatedEnemiesCount >= 2)
+        if (defeatedEnemiesCount >= 2)
         {
             SceneManager.LoadScene("Phase2Cutscene");
         }
@@ -100,11 +94,7 @@ public class Enemy : MonoBehaviour
             spriteRenderer.sprite = defeatedSprite;
         }
 
-        if (SceneManager.GetActiveScene().name == "Phase2Scene" && defeatedEnemiesCount >= 1)
-        {
-            SceneManager.LoadScene("WhispyDeathScene");
-        }
-        else if (SceneManager.GetActiveScene().name == "GameScene" && defeatedEnemiesCount >= 2)
+        if (defeatedEnemiesCount >= 2)
         {
             SceneManager.LoadScene("Phase2Cutscene");
         }
