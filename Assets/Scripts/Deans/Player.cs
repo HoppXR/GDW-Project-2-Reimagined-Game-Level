@@ -61,6 +61,9 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip crouchSoundClip;
     [SerializeField] private AudioClip deathSoundClip;
     [SerializeField] private AudioClip blockSoundClip;
+    [SerializeField] private AudioClip moveSoundClip;
+    [SerializeField] private AudioClip sprintSoundClip;
+
 
 
     private AudioSource inhaleAudioSource;
@@ -79,7 +82,7 @@ public class Player : MonoBehaviour
 
         inhaleAudioSource = gameObject.AddComponent<AudioSource>();
         inhaleAudioSource.clip = inhaleSoundClip;
-        inhaleAudioSource.loop = true; 
+        inhaleAudioSource.loop = true;
         inhaleAudioSource.playOnAwake = false;
 
         deathAudioSource = gameObject.AddComponent<AudioSource>();
@@ -115,11 +118,29 @@ public class Player : MonoBehaviour
                 hasDoubleJumped = false;
             }
         }
+
+        if (_moveDirection.x != 0f && isGrounded)
+        {
+            PlayMoveSound();
+        }
+        else
+        {
+            StopMoveSound();
+        }
+
+        if (isRunning && isGrounded)
+        {
+            PlaySprintSound();
+        }
+        else
+        {
+            StopSprintSound();
+        }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) 
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Projectile")
+        if (collision.gameObject.tag == "Projectile")
         {
             audioPlayer.Play();
         }
@@ -170,7 +191,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator ResetJumpFlag()
     {
-        // Wait for a short duration before allowing another jump
         yield return new WaitForSeconds(0.1f);
         isJumping = false;
     }
@@ -379,6 +399,44 @@ public class Player : MonoBehaviour
             hasInhaled = false;
 
             isMovementEnabled = true;
+        }
+    }
+
+    private void PlayMoveSound()
+    {
+        if (!audioPlayer.isPlaying || audioPlayer.clip != moveSoundClip)
+        {
+            audioPlayer.Stop();
+            audioPlayer.clip = moveSoundClip;
+            audioPlayer.Play();
+        }
+    }
+
+    private void StopMoveSound()
+    {
+        if (audioPlayer.clip == moveSoundClip)
+        {
+            audioPlayer.Stop();
+            audioPlayer.clip = null;
+        }
+    }
+
+    private void PlaySprintSound()
+    {
+        if (!audioPlayer.isPlaying || audioPlayer.clip != sprintSoundClip)
+        {
+            audioPlayer.Stop();
+            audioPlayer.clip = sprintSoundClip;
+            audioPlayer.Play();
+        }
+    }
+
+    private void StopSprintSound()
+    {
+        if (audioPlayer.clip == sprintSoundClip)
+        {
+            audioPlayer.Stop();
+            audioPlayer.clip = null;
         }
     }
 }
