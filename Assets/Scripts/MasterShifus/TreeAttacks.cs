@@ -5,7 +5,7 @@ public class TreeAttacks : MonoBehaviour
 {
     private Rigidbody2D rb;
     Vector3 pickedPosition;
-
+    // Phase 1
     // AirAttack
     public Vector3 lTreeAirAttack = new Vector3(-40f, -10f, 0f);
     public Vector3 rTreeAirAttack = new Vector3(7f, -10f, 0f);
@@ -35,9 +35,17 @@ public class TreeAttacks : MonoBehaviour
     [SerializeField] private Rigidbody2D AirPrefab;
     [SerializeField] private Rigidbody2D TrunkPrefab;
     private Rigidbody2D fallingObject;
-
+    
     private AudioSource audioSource;
 
+    
+    //Phase 2
+    [SerializeField] private Rigidbody2D TreePrefab;
+    [SerializeField] private float treeMoveSpeed = 150f;
+    
+    
+    
+    
     private void Start()
     {
         // Ensure there is an AudioSource component on the GameObject
@@ -72,7 +80,7 @@ public class TreeAttacks : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            TrunkAttack();
+            TreeRushAttack();
         }
     }
 
@@ -271,6 +279,53 @@ public class TreeAttacks : MonoBehaviour
             trunkRigidbody.position = targetPosition;
         }
     }
+//---------------------------------------------------------------------------------------------------------
+    public IEnumerator SpikeAttackL()
+    {
+        yield return new WaitForSeconds(0.6f);
+    }
+    
+    public IEnumerator SpikeAttackR()
+    {
+        yield return new WaitForSeconds(0.6f);
+    }
+    
+    public IEnumerator AOESpikeAttack()
+    {
+        yield return new WaitForSeconds(0.6f);
+    }
+    
+    public void TreeRushAttack()
+    {
+        PlaySound(trunkAttackSound);
+
+        Rigidbody2D treeObject = Instantiate(TreePrefab, new Vector3(-52.96f, -11.37322f, 0f), Quaternion.identity);
+
+        Rigidbody2D treeRigidbody = treeObject.GetComponent<Rigidbody2D>();
+
+        StartCoroutine(MoveTree(treeRigidbody, new Vector3(27.55f, -11.37322f, 0f), 6));
+        Destroy(treeObject.gameObject, 4);
+    }
+
+    public IEnumerator MoveTree(Rigidbody2D treeRigidbody, Vector3 targetPosition, float duration)
+    {
+        float elapsed_time = 0f;
+        Vector3 initialPosition = treeRigidbody.position;
+
+        while (elapsed_time < duration && treeRigidbody != null)
+        {
+            treeRigidbody.position =
+                Vector3.MoveTowards(initialPosition, targetPosition, (elapsed_time / duration) * trunkMoveSpeed);
+            elapsed_time += Time.deltaTime;
+            yield return null;
+        }
+
+        if (treeRigidbody != null)
+        {
+            treeRigidbody.position = targetPosition;
+        }
+    }
+    
 
     private void PlaySound(AudioClip sound)
     {
