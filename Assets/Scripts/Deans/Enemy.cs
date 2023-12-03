@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
 
         if (remainingEnemies.Count <= 0)
         {
-            SceneManager.LoadScene("Phase2Scene");
+            SceneManager.LoadScene("Phase2Cutscene");
         }
     }
 }

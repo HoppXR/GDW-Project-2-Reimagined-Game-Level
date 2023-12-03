@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScene.unity
     guid: bf42bbecbc2945b4aa9710e7ee6f1c2f
   - enabled: 1
+    path: Assets/Scenes/Phase2Cutscene.unity
+    guid: 32680427c6976224c945587f214c4fbb
+  - enabled: 1
     path: Assets/Scenes/Phase2Scene.unity
     guid: 48b2719188273e344870e1b98eb7a4ff
   - enabled: 1
