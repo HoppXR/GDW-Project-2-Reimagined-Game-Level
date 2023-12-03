@@ -1411,10 +1411,18 @@ MonoBehaviour:
   RightTreeApplePrefab: {fileID: 183279271887177896, guid: 6c8007abdf87dfa44bc76f81c611234a, type: 3}
   RightTreeSpikePrefab: {fileID: 5098342624472058099, guid: f2811ecbbda9e5e408e6f65ab815dd36, type: 3}
   RightWormSpikePrefab: {fileID: 1776673374556615160, guid: 4b90bd7afc742a643a8c1a7b6df2f25d, type: 3}
-  AirPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
+  AirFacingRightPrefab: {fileID: 845861923058826120, guid: 9bc2db5e6d5ec9e4da203be768496880, type: 3}
+  AirFacingLeftPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
   TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
+  P2TreeSpinDropStuffAmount: 15
+  P2TreeDropStuffAmount: 6
   TreePrefab: {fileID: 0}
-  treeMoveSpeed: 150
+  RootPrefab: {fileID: 0}
+  DangerPrefab: {fileID: 0}
+  AngryWormL: {fileID: 1776673374556615160, guid: 1a44303f3069aa446ba708ec44699d4f, type: 3}
+  AngryWormR: {fileID: 1776673374556615160, guid: e24e9d73518d2254e9a5d9c25003613d, type: 3}
+  AngrySpikeL: {fileID: 835421737299917817, guid: de42ddcb1f6e7e945967fdfb5d4a16dd, type: 3}
+  AngrySpikeR: {fileID: 5098342624472058099, guid: a40c8b5584bb01945b56be52558767d4, type: 3}
 --- !u!114 &474792488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2924,6 +2932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuPrefab: {fileID: 418093877}
+  controlMenuPrefab: {fileID: 0}
   otherCanvases: []
   audioSources:
   - {fileID: 1705551982}
@@ -3645,6 +3654,8 @@ MonoBehaviour:
   crouchSoundClip: {fileID: 8300000, guid: 664a73ff3177ccc4c90602d612465486, type: 3}
   deathSoundClip: {fileID: 8300000, guid: ec06862d4b908c94c90528c6b3dfb0ee, type: 3}
   blockSoundClip: {fileID: 8300000, guid: 74153e52bdac14a468b9701ec2d4671a, type: 3}
+  moveSoundClip: {fileID: 0}
+  sprintSoundClip: {fileID: 0}
 --- !u!50 &1785051751
 Rigidbody2D:
   serializedVersion: 4

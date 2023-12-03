@@ -55,13 +55,8 @@ public class DamageOnCollision : MonoBehaviour
                     }
                     else
                     {
-
                         // Destroy the projectile after bouncing
                         Destroy(gameObject, 0.2f); // Adjust the time to control how long it stays after bouncing
-
-
-                        Destroy(gameObject, 0.2f);
-
                     }
                 }
             }

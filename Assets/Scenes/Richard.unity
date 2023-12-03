@@ -738,7 +738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 5
   maxHealth: 60
-  currentHealth: 0
+  currentHealth: 60
   enemyID: WhispyR
   defeatedSprite: {fileID: 21300000, guid: 8f8eea7b8e5a5dd4b84e491b04cee035, type: 3}
   defeatParticles: {fileID: 0}
@@ -1258,6 +1258,8 @@ MonoBehaviour:
   inhaleSpeed: 2
   spitOutSpeed: 35
   healthBar: {fileID: 0}
+  audioPlayer: {fileID: 0}
+  trunkSound: {fileID: 0}
   jumpSoundClip: {fileID: 8300000, guid: b66d791de5a3d0d42b771c8f58c577b5, type: 3}
   inhaleSoundClip: {fileID: 8300000, guid: 5ffde52c8dd128645b67b70a04919497, type: 3}
   hurtSounds:
@@ -1270,6 +1272,8 @@ MonoBehaviour:
   crouchSoundClip: {fileID: 8300000, guid: 664a73ff3177ccc4c90602d612465486, type: 3}
   deathSoundClip: {fileID: 8300000, guid: ec06862d4b908c94c90528c6b3dfb0ee, type: 3}
   blockSoundClip: {fileID: 8300000, guid: 74153e52bdac14a468b9701ec2d4671a, type: 3}
+  moveSoundClip: {fileID: 0}
+  sprintSoundClip: {fileID: 0}
 --- !u!212 &1158017987
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1375,7 +1379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 5
   maxHealth: 60
-  currentHealth: 0
+  currentHealth: 60
   enemyID: WhispyL
   defeatedSprite: {fileID: 21300000, guid: 8f8eea7b8e5a5dd4b84e491b04cee035, type: 3}
   defeatParticles: {fileID: 0}
@@ -1720,10 +1724,18 @@ MonoBehaviour:
   RightTreeApplePrefab: {fileID: 183279271887177896, guid: 6c8007abdf87dfa44bc76f81c611234a, type: 3}
   RightTreeSpikePrefab: {fileID: 5098342624472058099, guid: f2811ecbbda9e5e408e6f65ab815dd36, type: 3}
   RightWormSpikePrefab: {fileID: 1776673374556615160, guid: 4b90bd7afc742a643a8c1a7b6df2f25d, type: 3}
-  AirPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
+  AirFacingRightPrefab: {fileID: 845861923058826120, guid: 9bc2db5e6d5ec9e4da203be768496880, type: 3}
+  AirFacingLeftPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
   TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
+  P2TreeSpinDropStuffAmount: 15
+  P2TreeDropStuffAmount: 6
   TreePrefab: {fileID: 8354283180352177149, guid: 6897b1b5ba6bf8044a020724d8edfafd, type: 3}
-  treeMoveSpeed: 150
+  RootPrefab: {fileID: 5530508967100706260, guid: 5710525fc99a2774b927ddaf3f03f6b8, type: 3}
+  DangerPrefab: {fileID: -544688002587244661, guid: ba9f138a70f117240bd3c49a8a4ff6a8, type: 3}
+  AngryWormL: {fileID: 1776673374556615160, guid: 1a44303f3069aa446ba708ec44699d4f, type: 3}
+  AngryWormR: {fileID: 1776673374556615160, guid: e24e9d73518d2254e9a5d9c25003613d, type: 3}
+  AngrySpikeL: {fileID: 835421737299917817, guid: de42ddcb1f6e7e945967fdfb5d4a16dd, type: 3}
+  AngrySpikeR: {fileID: 5098342624472058099, guid: a40c8b5584bb01945b56be52558767d4, type: 3}
 --- !u!114 &1553666423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,7 +1743,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553666421}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69b39b88900f5eb4f94e89e479cbaf61, type: 3}
   m_Name: 
