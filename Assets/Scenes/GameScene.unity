@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6a27d18d8aba54bb07073444d23eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 5
   maxHealth: 60
   currentHealth: 0
   enemyID: WhispyR
@@ -1142,10 +1142,10 @@ MonoBehaviour:
   AirTravelSpeed: 10
   AirAttackAmount: 10
   AirAttackDelay: 0.3
-  airAttackSound: {fileID: 8300000, guid: 66116c6ac35506c4292191cf4abf902e, type: 3}
+  airAttackSound: {fileID: 8300000, guid: 9be6765b3c450cb49bba9fd1f0b90975, type: 3}
   TreeDropStuffAmount: 3
   TreeSpinDropStuffAmount: 10
-  dropObjectSound: {fileID: 8300000, guid: f8e51e346d993614782b2c8e75a6dbcb, type: 3}
+  dropObjectSound: {fileID: 8300000, guid: 96e7ba2fdb1d7594cba249b0a331f24a, type: 3}
   fallSound: {fileID: 0}
   trunkMoveSpeed: 135
   trunkAttackSound: {fileID: 8300000, guid: f40eb6ba24ec7d342829e40f5bfdfce1, type: 3}
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6a27d18d8aba54bb07073444d23eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 5
   maxHealth: 60
   currentHealth: 0
   enemyID: WhispyL
@@ -2560,8 +2560,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 588.4016, y: 220}
-  m_SizeDelta: {x: 328.662, y: 65.929}
+  m_AnchoredPosition: {x: 580.98956, y: 207.5}
+  m_SizeDelta: {x: 337.5724, y: 76.531}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1389888480
 CanvasRenderer:
@@ -3046,15 +3046,15 @@ RectTransform:
   m_GameObject: {fileID: 1664476346}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7351493, y: 1.7351493, z: 1.7351493}
+  m_LocalScale: {x: 1.7351494, y: 1.7351494, z: 1.7351494}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 474396530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 329, y: -68}
-  m_SizeDelta: {x: 505.5462, y: 469.3107}
+  m_AnchoredPosition: {x: 335, y: 207.50006}
+  m_SizeDelta: {x: 505.5462, y: 143.3493}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1664476348
 MonoBehaviour:
@@ -3076,7 +3076,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9248236190b73ce409da30dceabf3b27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af986df676f343743aa1a3dc2652d7d9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3373,16 +3373,18 @@ MonoBehaviour:
   inhaleSpeed: 2
   spitOutSpeed: 35
   healthBar: {fileID: 0}
-  jumpSoundClip: {fileID: 8300000, guid: d7a81f6042fdd0047ab0dba670e155b3, type: 3}
+  jumpSoundClip: {fileID: 8300000, guid: b66d791de5a3d0d42b771c8f58c577b5, type: 3}
   inhaleSoundClip: {fileID: 8300000, guid: 5ffde52c8dd128645b67b70a04919497, type: 3}
   hurtSounds:
   - {fileID: 8300000, guid: e3eceb934d48984428310e80dc4dd526, type: 3}
   - {fileID: 8300000, guid: b41ea5971a78d5040aa8adbb86d43a16, type: 3}
   - {fileID: 8300000, guid: 482c67ba9b4a1b04094b80fadc3d24d5, type: 3}
   - {fileID: 8300000, guid: e6f2e9e41b914bd4487b9e308883c81f, type: 3}
+  - {fileID: 8300000, guid: 5fdb3db1a7036924cade1fd128d649f1, type: 3}
   exhaleSoundClip: {fileID: 8300000, guid: 22be00b274c89094f806d596a9504948, type: 3}
   crouchSoundClip: {fileID: 8300000, guid: 664a73ff3177ccc4c90602d612465486, type: 3}
-  deathSoundClip: {fileID: 8300000, guid: d65ae7146551f69408f316e3fa78e0ed, type: 3}
+  deathSoundClip: {fileID: 8300000, guid: ec06862d4b908c94c90528c6b3dfb0ee, type: 3}
+  blockSoundClip: {fileID: 8300000, guid: 74153e52bdac14a468b9701ec2d4671a, type: 3}
 --- !u!50 &1785051751
 Rigidbody2D:
   serializedVersion: 4

@@ -78,7 +78,7 @@ public class TreeAttacks : MonoBehaviour
 
     public IEnumerator LAirAttack() // Attack last 3.5 secs
     {
-        PlaySound(fallSound);
+        PlaySound(airAttackSound);
 
         for (int i = 0; i < AirAttackAmount; i++)
         {
@@ -99,7 +99,7 @@ public class TreeAttacks : MonoBehaviour
 
     public IEnumerator RAirAttack() // Attack last 3.5 secs
     {
-        PlaySound(fallSound);
+        PlaySound(airAttackSound);
 
         for (int i = 0; i < AirAttackAmount; i++)
         {

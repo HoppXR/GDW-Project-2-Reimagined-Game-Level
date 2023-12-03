@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip exhaleSoundClip;
     [SerializeField] private AudioClip crouchSoundClip;
     [SerializeField] private AudioClip deathSoundClip;
+    [SerializeField] private AudioClip blockSoundClip;
+
 
     private AudioSource inhaleAudioSource;
     private AudioSource deathAudioSource;
@@ -236,12 +238,15 @@ public class Player : MonoBehaviour
         if (isBlocking)
         {
             Debug.Log("Blocking enabled");
+
+            if (blockSoundClip != null) AudioSource.PlayClipAtPoint(blockSoundClip, transform.position);
         }
         else
         {
             Debug.Log("Blocking disabled");
         }
     }
+
 
     public void StopBlocking()
     {
