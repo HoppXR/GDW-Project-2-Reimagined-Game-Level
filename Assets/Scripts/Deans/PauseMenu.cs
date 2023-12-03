@@ -104,24 +104,21 @@ public class PauseMenu : MonoBehaviour
     {
         if (menuPrefab != null)
         {
-            // Deactivate current menu if any
             CloseTopMenu();
 
-            // Instantiate and activate the top menu
             currentMenu = Instantiate(menuPrefab);
             currentMenu.SetActive(true);
-            Time.timeScale = 0f; // Pause the game when the top menu is open
+            Time.timeScale = 0f; 
             player.TogglePlayerInput(false);
         }
     }
 
     void CloseTopMenu()
     {
-        // Deactivate and destroy the top menu
         if (currentMenu != null && currentMenu.activeSelf)
         {
             Destroy(currentMenu);
-            Time.timeScale = 1f; // Resume the game when the top menu is closed
+            Time.timeScale = 1f; 
             player.TogglePlayerInput(true);
         }
     }
@@ -130,10 +127,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (menuPrefab != null)
         {
-            // Deactivate current menu if any
             CloseTopMenu();
 
-            // Instantiate and activate the menu
             currentMenu = Instantiate(menuPrefab);
             currentMenu.SetActive(true);
             player.TogglePlayerInput(false);
@@ -142,10 +137,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
-#else
+        #else
         Application.Quit();
-#endif
+        #endif
     }
 }
