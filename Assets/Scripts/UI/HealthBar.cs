@@ -14,17 +14,16 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("HealthBar Start()");
 
 
         if (enemy == null)
         {
-            Debug.LogError("HealthBar: Enemy reference not set!");
+
         }
 
         if (slider == null)
         {
-            Debug.LogError("HealthBar: Slider reference not set!");
+
         }
     }
 

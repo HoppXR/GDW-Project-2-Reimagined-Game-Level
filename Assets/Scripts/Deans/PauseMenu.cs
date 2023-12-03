@@ -22,7 +22,6 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        //pauseMenuInstance = Instantiate(pauseMenuPrefab);
         pauseMenuInstance = pauseMenuPrefab;
         pauseMenuInstance.SetActive(false);
 
@@ -50,7 +49,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("Resume Button Clicked");
         pauseMenuInstance.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -93,16 +91,12 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("Restart Button Clicked");
-        // Reload the current scene
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
 
     public void Quit()
     {
-        Debug.Log("Quit Button Clicked");
-        // Quit the application it works in builds, not in the editor
         #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
         #else

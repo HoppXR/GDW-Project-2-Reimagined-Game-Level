@@ -175,3 +175,4 @@ MonoBehaviour:
   bounceForce: 5
   playerJumpForce: 5
   playerInvulnerabilityTime: 1
+  collisionSoundClip: {fileID: 8300000, guid: 95e3d1ebb6709384fafcb94f544a4e68, type: 3}
