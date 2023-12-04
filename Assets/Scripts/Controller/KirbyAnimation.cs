@@ -15,8 +15,6 @@ public class KirbyAnimation : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
-
-        //UpdateMovement();
         
         InhaleAni();
         BlockAni();
@@ -24,31 +22,6 @@ public class KirbyAnimation : MonoBehaviour
         MovingAni();
         JumpAni();
         CrouchAni();
-    }
-
-    void Flip()
-    {
-        isFacingRight = !isFacingRight;
-
-        Vector3 theScale = transform.localScale;
-
-        theScale.x *= -1;
-
-        transform.localScale = theScale;
-    }
-    
-    private void UpdateMovement()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-
-        if (horizontalInput > 0 && !isFacingRight)
-        {
-            Flip();
-        }
-        else if (horizontalInput < 0 && isFacingRight)
-        {
-            Flip();
-        }
     }
 
     private bool IsGrounded()
@@ -131,13 +104,18 @@ public class KirbyAnimation : MonoBehaviour
 
     public void Inhaled()
     {
+        animator.SetBool("InhaledAni", true);
         animator.SetBool("Inhaled", true);
+    }
+
+    public void EndInhaled()
+    {
+        animator.SetBool("InhaledAni", false);
     }
 
     public void Spitting()
     {
         animator.SetBool("IsSpitting", true);
-        
         animator.SetBool("Inhaled", false);
     }
 

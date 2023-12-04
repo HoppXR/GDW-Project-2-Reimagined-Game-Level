@@ -229,14 +229,20 @@ public class Player : MonoBehaviour
 
     private IEnumerator DamageAnimation()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.663f);
         kirbyAnimation.Recovery();
     }
 
     private IEnumerator SpittingAnimation()
     {
-        yield return new WaitForSeconds(0.33f);
+        yield return new WaitForSeconds(0.417f);
         kirbyAnimation.EndSpitting();
+    }
+
+    private IEnumerator InhaledAnimation()
+    {
+        yield return new WaitForSeconds(0.583f);
+        kirbyAnimation.EndInhaled();
     }
 
     public void PlayerCrouch()
@@ -417,6 +423,7 @@ public class Player : MonoBehaviour
                     hasInhaled = true;
 
                     kirbyAnimation.Inhaled();
+                    StartCoroutine(InhaledAnimation());
                 }
             }
 
