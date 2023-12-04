@@ -478,7 +478,7 @@ public class TreeAttacks : MonoBehaviour
             GameObject prefabToSpawn;
             if (leftOrRight == 1) // Left
             {
-                prefabToSpawn = Random.Range(0f, 1f) < 0.3f
+                prefabToSpawn = Random.Range(0f, 1f) < 0.5f
                     ? AngrySpikeL.gameObject
                     : AngryWormL.gameObject;
                 float randomX = Random.Range(-37.46f, -25.02f);
@@ -489,7 +489,7 @@ public class TreeAttacks : MonoBehaviour
 
             if (leftOrRight == 2) // Right
             {
-                prefabToSpawn = Random.Range(0f, 1f) < 0.3f
+                prefabToSpawn = Random.Range(0f, 1f) < 0.5f
                     ? AngrySpikeR.gameObject
                     : AngryWormR.gameObject;
                 float randomX = Random.Range(-13.68f, 1f);
