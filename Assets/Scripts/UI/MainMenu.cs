@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditorInternal;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -25,11 +24,11 @@ public class MainMenu : MonoBehaviour
     {
         PlayButtonClickSound();
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         EditorApplication.isPlaying = false;
-        #else
+#else
         Application.Quit();
-        #endif
+#endif
     }
 
     private void PlayButtonClickSound()
@@ -42,7 +41,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(ELoadLevel(SceneManager.GetActiveScene().buildIndex +1));
+        StartCoroutine(ELoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     IEnumerator ELoadLevel(int levelIndex)
