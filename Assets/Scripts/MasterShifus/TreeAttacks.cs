@@ -64,7 +64,7 @@ public class TreeAttacks : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -95,7 +95,7 @@ public class TreeAttacks : MonoBehaviour
         {
             StartCoroutine(AOESpikeAttack());
         }
-    }
+    }*/
 
     public IEnumerator LAirAttack() // Attack last 3.5 secs
     {
@@ -296,9 +296,10 @@ public class TreeAttacks : MonoBehaviour
 
     public IEnumerator AOESpikeAttack()
     {
-        Rigidbody2D Danger1 = Instantiate(DangerPrefab, new Vector3(-31.5f, -15f, 0f), Quaternion.identity);
-        Rigidbody2D Danger2 = Instantiate(DangerPrefab, new Vector3(-15.5f, -15f, 0f), Quaternion.identity);
-        Rigidbody2D Danger3 = Instantiate(DangerPrefab, new Vector3(-0.2f, -15f, 0f), Quaternion.identity);
+        //Dangeraudio here
+        Rigidbody2D Danger1 = Instantiate(DangerPrefab, new Vector3(-30.3f, -15f, 0f), Quaternion.identity);
+        Rigidbody2D Danger2 = Instantiate(DangerPrefab, new Vector3(-17.84f, -15f, 0f), Quaternion.identity);
+        Rigidbody2D Danger3 = Instantiate(DangerPrefab, new Vector3(-5.51f, -15f, 0f), Quaternion.identity);
         
         Destroy(Danger1.gameObject, 1);
         Destroy(Danger2.gameObject, 1);
@@ -306,21 +307,22 @@ public class TreeAttacks : MonoBehaviour
         
         yield return new WaitForSeconds(1.5f);
         
-        Rigidbody2D rootObject1 = Instantiate(RootPrefab, new Vector3(-31.5f, -26.1f, 0f), Quaternion.identity);
+        //woosh sound here
+        Rigidbody2D rootObject1 = Instantiate(RootPrefab, new Vector3(-30.3f, -26.1f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody1 = rootObject1.GetComponent<Rigidbody2D>();
 
-        Rigidbody2D rootObject2 = Instantiate(RootPrefab, new Vector3(-15.5f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject2 = Instantiate(RootPrefab, new Vector3(-17.84f, -26.1f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody2 = rootObject2.GetComponent<Rigidbody2D>();
 
-        Rigidbody2D rootObject3 = Instantiate(RootPrefab, new Vector3(-0.2f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject3 = Instantiate(RootPrefab, new Vector3(-5.51f, -26.1f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody3 = rootObject3.GetComponent<Rigidbody2D>();
 
-        StartCoroutine(MoveRoot(rootRigidbody1, new Vector3(-31.5f, -9.7f, 0f),
-            new Vector3(-31.5f, -26.1f, 0f), 1));
-        StartCoroutine(MoveRoot(rootRigidbody2, new Vector3(-15.5f, -9.7f, 0f),
-           new Vector3(-15.5f, -26.1f, 0f), 1));
-        StartCoroutine(MoveRoot(rootRigidbody3, new Vector3(-0.2f, -9.7f, 0f),
-            new Vector3(-0.2f, -26.1f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody1, new Vector3(-30.3f, -9.7f, 0f),
+            new Vector3(-30.3f, -26.1f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody2, new Vector3(-17.84f, -9.7f, 0f),
+           new Vector3(-17.84f, -26.1f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody3, new Vector3(-5.51f, -9.7f, 0f),
+            new Vector3(-5.51f, -26.1f, 0f), 1));
         
         Destroy(rootObject1.gameObject, 3);
         Destroy(rootObject2.gameObject, 3);
@@ -328,23 +330,28 @@ public class TreeAttacks : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        Rigidbody2D Danger4 = Instantiate(DangerPrefab, new Vector3(-25f, -15f, 0f), Quaternion.identity);
-        Rigidbody2D Danger5 = Instantiate(DangerPrefab, new Vector3(-6.4f, -15f, 0f), Quaternion.identity);
+        
+        //Dangeraudio here
+        
+        Rigidbody2D Danger4 = Instantiate(DangerPrefab, new Vector3(-24f, -15f, 0f), Quaternion.identity);
+        Rigidbody2D Danger5 = Instantiate(DangerPrefab, new Vector3(-10.3f, -15f, 0f), Quaternion.identity);
         
         Destroy(Danger4.gameObject, 1);
         Destroy(Danger5.gameObject, 1);
         
         yield return new WaitForSeconds(1.5f);
         
-        Rigidbody2D rootObject4 = Instantiate(RootPrefab, new Vector3(-25f, -26.1f, 0f), Quaternion.identity);
+        
+        //woosh sound here
+        Rigidbody2D rootObject4 = Instantiate(RootPrefab, new Vector3(-24f, -26.1f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody4 = rootObject4.GetComponent<Rigidbody2D>();
-        Rigidbody2D rootObject5 = Instantiate(RootPrefab, new Vector3(-6.4f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject5 = Instantiate(RootPrefab, new Vector3(-10.3f, -26.1f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody5 = rootObject5.GetComponent<Rigidbody2D>();
         
-        StartCoroutine(MoveRoot(rootRigidbody4, new Vector3(-25f, -9.7f, 0f),
-            new Vector3(-25f, -26.1f, 0f), 1));
-        StartCoroutine(MoveRoot(rootRigidbody5, new Vector3(-6.4f, -9.7f, 0f),
-            new Vector3(-6.4f, -26.1f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody4, new Vector3(-24f, -9.7f, 0f),
+            new Vector3(-24f, -26.1f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody5, new Vector3(-10.3f, -9.7f, 0f),
+            new Vector3(-10.3f, -26.1f, 0f), 1));
         
         Destroy(rootObject4.gameObject, 3);
         Destroy(rootObject5.gameObject, 3);
@@ -389,6 +396,7 @@ public class TreeAttacks : MonoBehaviour
 
     public void TreeRushAttack()
     {
+        //leave russling or rumbling sounds?
         PlaySound(trunkAttackSound);
 
         Rigidbody2D treeObject = Instantiate(TreePrefab, new Vector3(-52.96f, -11.37322f, 0f), Quaternion.identity);
@@ -424,29 +432,16 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < P2TreeDropStuffAmount; i++)
         {
-            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f
+            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.50f
                 ? LeftTreeApplePrefab.gameObject
                 : AngrySpikeL.gameObject;
-            float randomX = UnityEngine.Random.Range(-37f, -32.9f);
-            float randomY = UnityEngine.Random.Range(5.5f, 8f);
-            float randomX2 = UnityEngine.Random.Range(-26.6f, -20.24f);
-            Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-            Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-            if (UnityEngine.Random.Range(0, 2) == 0)
-            {
-                pickedPosition = randomPosition;
-            }
-            else
-            {
-                pickedPosition = randomPosition2;
-            }
-
-            GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
+            float randomX = UnityEngine.Random.Range(-37.46f, -25.02f);
+            Vector3 randomPosition = new Vector3(randomX, 11.52f, 0f);
+            GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
             fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
-
             PlaySound(dropObjectSound);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.2f);
         }
     }
     
@@ -456,29 +451,18 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < P2TreeDropStuffAmount; i++)
         {
-            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f
+            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.50f
                 ? RightTreeApplePrefab.gameObject
                 : AngrySpikeR.gameObject;
-            float randomX = UnityEngine.Random.Range(0f, 4f);
-            float randomY = UnityEngine.Random.Range(5.5f, 8f);
-            float randomX2 = UnityEngine.Random.Range(-13f, -6f);
-            Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-            Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-            if (UnityEngine.Random.Range(0, 2) == 0)
-            {
-                pickedPosition = randomPosition;
-            }
-            else
-            {
-                pickedPosition = randomPosition2;
-            }
+            float randomX = UnityEngine.Random.Range(-13.68f, 1f);
+            Vector3 randomPosition = new Vector3(randomX, 11.52f, 0f);
 
-            GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
+            GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
             fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
 
             PlaySound(dropObjectSound);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.2f);
         }
     }
     
@@ -537,10 +521,9 @@ public class TreeAttacks : MonoBehaviour
                 fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             }
 
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.9f);
         }
     }
-    
     
     private void PlaySound(AudioClip sound)
     {

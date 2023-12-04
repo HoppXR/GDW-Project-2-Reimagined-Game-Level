@@ -131,7 +131,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -194,4 +194,3 @@ MonoBehaviour:
   bounceForce: 5
   playerJumpForce: 5
   playerInvulnerabilityTime: 1
-  collisionSoundClip: {fileID: 8300000, guid: 397be788b9522d545814c2ef2b716c37, type: 3}

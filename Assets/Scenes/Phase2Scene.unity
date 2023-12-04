@@ -135,8 +135,7 @@ GameObject:
   - component: {fileID: 54393896}
   - component: {fileID: 54393899}
   - component: {fileID: 54393898}
-  - component: {fileID: 54393900}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Whispy HandUp
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -183,7 +182,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a02a78166a264ee42acea45cf82fb9cd, type: 3}
   m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_FlipX: 0
@@ -300,26 +299,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4262662, y: 4.446696}
   m_EdgeRadius: 0
---- !u!114 &54393900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54393895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c5da44723cae149bcfc6dc6018c34a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
-  maxHealth: 100
-  currentHealth: 0
-  enemyID: 
-  defeatedSprite: {fileID: 0}
-  defeatParticles: {fileID: 0}
-  defeatSound: {fileID: 0}
-  damageSound: {fileID: 0}
 --- !u!1 &56033258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1398,7 @@ GameObject:
   - component: {fileID: 666485698}
   - component: {fileID: 666485697}
   - component: {fileID: 666485700}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Whispy HandEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1466,7 +1445,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a02a78166a264ee42acea45cf82fb9cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -3272,7 +3251,7 @@ GameObject:
   - component: {fileID: 1560758436}
   - component: {fileID: 1560758435}
   - component: {fileID: 1560758442}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Whispy HandEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3499,7 +3478,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a02a78166a264ee42acea45cf82fb9cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3741,8 +3720,7 @@ GameObject:
   - component: {fileID: 1896196285}
   - component: {fileID: 1896196284}
   - component: {fileID: 1896196283}
-  - component: {fileID: 1896196287}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Whispy HandUp
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3879,7 +3857,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a02a78166a264ee42acea45cf82fb9cd, type: 3}
   m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_FlipX: 0
@@ -3906,26 +3884,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 508195148}
   m_LocalEulerAnglesHint: {x: -1.889, y: 178.676, z: -32.481}
---- !u!114 &1896196287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896196282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c5da44723cae149bcfc6dc6018c34a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
-  maxHealth: 100
-  currentHealth: 0
-  enemyID: 
-  defeatedSprite: {fileID: 0}
-  defeatParticles: {fileID: 0}
-  defeatSound: {fileID: 0}
-  damageSound: {fileID: 0}
 --- !u!1 &1938793890
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,6 +4134,95 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1810906150230480083, guid: 87408435558563543bf92a8bc2207e2d, type: 3}
   m_PrefabInstance: {fileID: 1005051964}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2055152583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055152586}
+  - component: {fileID: 2055152585}
+  - component: {fileID: 2055152584}
+  m_Layer: 0
+  m_Name: TreeAIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2055152584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055152583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b882e0d131cf744bec8056d98f8871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lTreeAirAttack: {x: -40, y: -10, z: 0}
+  rTreeAirAttack: {x: 7, y: -10, z: 0}
+  AirTravelSpeed: 10
+  AirAttackAmount: 10
+  AirAttackDelay: 0.3
+  airAttackSound: {fileID: 8300000, guid: 9be6765b3c450cb49bba9fd1f0b90975, type: 3}
+  TreeDropStuffAmount: 3
+  TreeSpinDropStuffAmount: 10
+  dropObjectSound: {fileID: 8300000, guid: 96e7ba2fdb1d7594cba249b0a331f24a, type: 3}
+  fallSound: {fileID: 0}
+  trunkMoveSpeed: 135
+  trunkAttackSound: {fileID: 8300000, guid: f40eb6ba24ec7d342829e40f5bfdfce1, type: 3}
+  LeftTreeApplePrefab: {fileID: 325936728603695898, guid: 81f884445b24b5244a41364c4580ba50, type: 3}
+  LeftTreeSpikePrefab: {fileID: 835421737299917817, guid: a1e32db68d1ffdb4ab07ee4e484a89fd, type: 3}
+  LeftWormSpikePrefab: {fileID: 1776673374556615160, guid: 86f35b98cd06441479e2786b7d4bed15, type: 3}
+  RightTreeApplePrefab: {fileID: 183279271887177896, guid: 6c8007abdf87dfa44bc76f81c611234a, type: 3}
+  RightTreeSpikePrefab: {fileID: 5098342624472058099, guid: f2811ecbbda9e5e408e6f65ab815dd36, type: 3}
+  RightWormSpikePrefab: {fileID: 1776673374556615160, guid: 4b90bd7afc742a643a8c1a7b6df2f25d, type: 3}
+  AirFacingRightPrefab: {fileID: 845861923058826120, guid: 9bc2db5e6d5ec9e4da203be768496880, type: 3}
+  AirFacingLeftPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
+  TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
+  P2TreeSpinDropStuffAmount: 15
+  P2TreeDropStuffAmount: 6
+  TreePrefab: {fileID: 8354283180352177149, guid: 6897b1b5ba6bf8044a020724d8edfafd, type: 3}
+  RootPrefab: {fileID: 4839323053703422129, guid: 482407eb78f325e4cbd855742d4a8445, type: 3}
+  DangerPrefab: {fileID: -544688002587244661, guid: ba9f138a70f117240bd3c49a8a4ff6a8, type: 3}
+  AngryWormL: {fileID: 1776673374556615160, guid: 1a44303f3069aa446ba708ec44699d4f, type: 3}
+  AngryWormR: {fileID: 1776673374556615160, guid: e24e9d73518d2254e9a5d9c25003613d, type: 3}
+  AngrySpikeL: {fileID: 835421737299917817, guid: de42ddcb1f6e7e945967fdfb5d4a16dd, type: 3}
+  AngrySpikeR: {fileID: 5098342624472058099, guid: a40c8b5584bb01945b56be52558767d4, type: 3}
+--- !u!114 &2055152585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055152583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ffda45d45167024bb8abaa5cca4958b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GraftedWoodsL: {fileID: 666485700}
+  GraftedWoodsR: {fileID: 1560758442}
+--- !u!4 &2055152586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055152583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.832428, y: -9.269376, z: 0.62065893}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061333319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4392,7 +4439,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.5736139, g: 0.33790192, b: 0.6320754, a: 1}
   m_FlipX: 0
@@ -4623,6 +4670,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1073566804}
   - {fileID: 2130113391}
+  - {fileID: 2055152586}
   - {fileID: 1120749987}
   - {fileID: 875766704}
   - {fileID: 508195148}

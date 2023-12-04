@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
             spriteRenderer.sprite = defeatedSprite;
         }
 
-        if (SceneManager.GetActiveScene().name == "Phase2Scene" && defeatedEnemiesCount >= 1)
+        if (SceneManager.GetActiveScene().name == "Phase2Scene" && defeatedEnemiesCount >= 2)
         {
             SceneManager.LoadScene("WhispyDeathScene");
         }
