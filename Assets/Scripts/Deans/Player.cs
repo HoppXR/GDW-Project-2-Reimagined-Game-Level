@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEditor.Tilemaps;
 
 public class Player : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     private bool hasInhaled = false;
     private bool isDying = false;
     private bool isJumping = false;
+    private bool isFacingRight = true;
 
     [SerializeField] private Image healthBar;
 
@@ -54,8 +56,6 @@ public class Player : MonoBehaviour
     public AudioSource trunkSound;
 
     private AudioClip lastPlayedHurtSound;
-
-    private SpriteRenderer spriteRenderer;
 
     [Header("Audio Clips")]
     [SerializeField] private AudioClip jumpSoundClip;
@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
         InputManager.SetGameControls();
         rb = GetComponent<Rigidbody2D>();
         kirbyAnimation = GetComponent<KirbyAnimation>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         _moveDirection = Vector2.zero;
 
         currentHealth = maxHealth;
@@ -96,14 +95,10 @@ public class Player : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        spriteRenderer.flipX = rb.velocity.x < 0f;
-    }
-
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal");
+        UpdateMovement();
+        
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
 
         if (isMovementEnabled)
@@ -141,6 +136,31 @@ public class Player : MonoBehaviour
         else
         {
             StopSprintSound();
+        }
+    }
+    
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+
+        Vector3 theScale = transform.localScale;
+
+        theScale.x *= -1;
+
+        transform.localScale = theScale;
+    }
+    
+    private void UpdateMovement()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (horizontalInput > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (horizontalInput < 0 && isFacingRight)
+        {
+            Flip();
         }
     }
 

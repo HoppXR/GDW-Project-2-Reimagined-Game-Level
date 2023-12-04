@@ -10,17 +10,45 @@ public class KirbyAnimation : MonoBehaviour
     public Animator animator;
 
     private float horizontalMove;
+    private bool isFacingRight = true;
 
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal");
 
+        //UpdateMovement();
+        
         InhaleAni();
         BlockAni();
 
         MovingAni();
         JumpAni();
         CrouchAni();
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+
+        Vector3 theScale = transform.localScale;
+
+        theScale.x *= -1;
+
+        transform.localScale = theScale;
+    }
+    
+    private void UpdateMovement()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (horizontalInput > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (horizontalInput < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
 
     private bool IsGrounded()
