@@ -1420,6 +1420,7 @@ MonoBehaviour:
   AirFacingRightPrefab: {fileID: 845861923058826120, guid: 9bc2db5e6d5ec9e4da203be768496880, type: 3}
   AirFacingLeftPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
   TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
+  TrunkPrefab1: {fileID: 0}
   P2TreeSpinDropStuffAmount: 15
   P2TreeDropStuffAmount: 6
   TreePrefab: {fileID: 0}
@@ -3824,11 +3825,11 @@ MonoBehaviour:
   jumpSoundClip: {fileID: 8300000, guid: b66d791de5a3d0d42b771c8f58c577b5, type: 3}
   inhaleSoundClip: {fileID: 8300000, guid: 5ffde52c8dd128645b67b70a04919497, type: 3}
   hurtSounds:
-  - {fileID: 8300000, guid: e3eceb934d48984428310e80dc4dd526, type: 3}
-  - {fileID: 8300000, guid: b41ea5971a78d5040aa8adbb86d43a16, type: 3}
-  - {fileID: 8300000, guid: 482c67ba9b4a1b04094b80fadc3d24d5, type: 3}
-  - {fileID: 8300000, guid: e6f2e9e41b914bd4487b9e308883c81f, type: 3}
-  - {fileID: 8300000, guid: 5fdb3db1a7036924cade1fd128d649f1, type: 3}
+  - {fileID: 8300000, guid: 803b9ac1b1a68154888cd070f69be55b, type: 3}
+  - {fileID: 8300000, guid: 4a56b44bb3f18b64ba5f6ae172094eb3, type: 3}
+  - {fileID: 8300000, guid: 451f416a0079ec84396ed7e3238a1199, type: 3}
+  - {fileID: 8300000, guid: 6215ad2509b93184ab2bb8cc4caa0316, type: 3}
+  - {fileID: 8300000, guid: 7c160576dcc058e47abed90258e47fef, type: 3}
   exhaleSoundClip: {fileID: 8300000, guid: 0a8b952559810614f959024ebb1852e9, type: 3}
   crouchSoundClip: {fileID: 8300000, guid: 260b985fceb1ddf49a486c2d3e3d752e, type: 3}
   deathSoundClip: {fileID: 8300000, guid: ec06862d4b908c94c90528c6b3dfb0ee, type: 3}
