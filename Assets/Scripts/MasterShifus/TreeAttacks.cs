@@ -9,8 +9,8 @@ public class TreeAttacks : MonoBehaviour
 
     // Phase 1
     // AirAttack
-    public Vector3 lTreeAirAttack = new Vector3(-40f, -10f, 0f);
-    public Vector3 rTreeAirAttack = new Vector3(7f, -10f, 0f);
+    public Vector3 lTreeAirAttack = new Vector3(-39.8f, -13.4f, 0f);
+    public Vector3 rTreeAirAttack = new Vector3(6.8f, -13.4f, 0f);
     [SerializeField] private float AirTravelSpeed = 10;
     [SerializeField] private float AirAttackAmount = 10;
     [SerializeField] private float AirAttackDelay = 0.3f;
@@ -297,9 +297,9 @@ public class TreeAttacks : MonoBehaviour
     public IEnumerator AOESpikeAttack()
     {
         //Dangeraudio here
-        Rigidbody2D Danger1 = Instantiate(DangerPrefab, new Vector3(-30.3f, -15f, 0f), Quaternion.identity);
-        Rigidbody2D Danger2 = Instantiate(DangerPrefab, new Vector3(-17.84f, -15f, 0f), Quaternion.identity);
-        Rigidbody2D Danger3 = Instantiate(DangerPrefab, new Vector3(-5.51f, -15f, 0f), Quaternion.identity);
+        Rigidbody2D Danger1 = Instantiate(DangerPrefab, new Vector3(-30.3f, -17.64f, 0f), Quaternion.identity);
+        Rigidbody2D Danger2 = Instantiate(DangerPrefab, new Vector3(-17.84f, -17.64f, 0f), Quaternion.identity);
+        Rigidbody2D Danger3 = Instantiate(DangerPrefab, new Vector3(-5.51f, -17.64f, 0f), Quaternion.identity);
         
         Destroy(Danger1.gameObject, 1);
         Destroy(Danger2.gameObject, 1);
@@ -308,21 +308,21 @@ public class TreeAttacks : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         
         //woosh sound here
-        Rigidbody2D rootObject1 = Instantiate(RootPrefab, new Vector3(-30.3f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject1 = Instantiate(RootPrefab, new Vector3(-30.3f, -40.35f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody1 = rootObject1.GetComponent<Rigidbody2D>();
 
-        Rigidbody2D rootObject2 = Instantiate(RootPrefab, new Vector3(-17.84f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject2 = Instantiate(RootPrefab, new Vector3(-17.84f, -40.35f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody2 = rootObject2.GetComponent<Rigidbody2D>();
 
-        Rigidbody2D rootObject3 = Instantiate(RootPrefab, new Vector3(-5.51f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject3 = Instantiate(RootPrefab, new Vector3(-5.51f, -40.35f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody3 = rootObject3.GetComponent<Rigidbody2D>();
 
-        StartCoroutine(MoveRoot(rootRigidbody1, new Vector3(-30.3f, -9.7f, 0f),
-            new Vector3(-30.3f, -26.1f, 0f), 1));
-        StartCoroutine(MoveRoot(rootRigidbody2, new Vector3(-17.84f, -9.7f, 0f),
-           new Vector3(-17.84f, -26.1f, 0f), 1));
-        StartCoroutine(MoveRoot(rootRigidbody3, new Vector3(-5.51f, -9.7f, 0f),
-            new Vector3(-5.51f, -26.1f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody1, new Vector3(-30.3f, -15.17f, 0f),
+            new Vector3(-30.3f, -40.35f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody2, new Vector3(-17.84f, -15.17f, 0f),
+           new Vector3(-17.84f, -40.35f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody3, new Vector3(-5.51f, -15.17f, 0f),
+            new Vector3(-5.51f, -40.35f, 0f), 1));
         
         Destroy(rootObject1.gameObject, 3);
         Destroy(rootObject2.gameObject, 3);
@@ -333,8 +333,8 @@ public class TreeAttacks : MonoBehaviour
         
         //Dangeraudio here
         
-        Rigidbody2D Danger4 = Instantiate(DangerPrefab, new Vector3(-24f, -15f, 0f), Quaternion.identity);
-        Rigidbody2D Danger5 = Instantiate(DangerPrefab, new Vector3(-10.3f, -15f, 0f), Quaternion.identity);
+        Rigidbody2D Danger4 = Instantiate(DangerPrefab, new Vector3(-24f, -17.64f, 0f), Quaternion.identity);
+        Rigidbody2D Danger5 = Instantiate(DangerPrefab, new Vector3(-10.3f, -17.64f, 0f), Quaternion.identity);
         
         Destroy(Danger4.gameObject, 1);
         Destroy(Danger5.gameObject, 1);
@@ -343,15 +343,15 @@ public class TreeAttacks : MonoBehaviour
         
         
         //woosh sound here
-        Rigidbody2D rootObject4 = Instantiate(RootPrefab, new Vector3(-24f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject4 = Instantiate(RootPrefab, new Vector3(-24f, -40.35f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody4 = rootObject4.GetComponent<Rigidbody2D>();
-        Rigidbody2D rootObject5 = Instantiate(RootPrefab, new Vector3(-10.3f, -26.1f, 0f), Quaternion.identity);
+        Rigidbody2D rootObject5 = Instantiate(RootPrefab, new Vector3(-10.3f, -40.35f, 0f), Quaternion.identity);
         Rigidbody2D rootRigidbody5 = rootObject5.GetComponent<Rigidbody2D>();
         
-        StartCoroutine(MoveRoot(rootRigidbody4, new Vector3(-24f, -9.7f, 0f),
-            new Vector3(-24f, -26.1f, 0f), 1));
-        StartCoroutine(MoveRoot(rootRigidbody5, new Vector3(-10.3f, -9.7f, 0f),
-            new Vector3(-10.3f, -26.1f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody4, new Vector3(-24f, -15.17f, 0f),
+            new Vector3(-24f, -40.35f, 0f), 1));
+        StartCoroutine(MoveRoot(rootRigidbody5, new Vector3(-10.3f, -15.17f, 0f),
+            new Vector3(-10.3f, -40.35f, 0f), 1));
         
         Destroy(rootObject4.gameObject, 3);
         Destroy(rootObject5.gameObject, 3);
@@ -399,11 +399,11 @@ public class TreeAttacks : MonoBehaviour
         //leave russling or rumbling sounds?
         PlaySound(trunkAttackSound);
 
-        Rigidbody2D treeObject = Instantiate(TreePrefab, new Vector3(-52.96f, -11.37322f, 0f), Quaternion.identity);
+        Rigidbody2D treeObject = Instantiate(TreePrefab, new Vector3(-57.52f, -13.7f, 0f), Quaternion.identity);
         
         Rigidbody2D treeRigidbody = treeObject.GetComponent<Rigidbody2D>();
 
-        StartCoroutine(MoveTree(treeRigidbody, new Vector3(27.55f, -11.37322f, 0f), 6));
+        StartCoroutine(MoveTree(treeRigidbody, new Vector3(22.2f, -13.7f, 0f), 6));
         Destroy(treeObject.gameObject, 4);
     }
 

@@ -21,7 +21,7 @@ public class TreeAI2 : MonoBehaviour
     private IEnumerator TreeAttacking()
     {
         yield return new WaitForSeconds(4f);
-        while (GraftedWoodsL.currentHealth > 0 && GraftedWoodsR.currentHealth > 0)
+        while (GraftedWoodsL.currentHealth > 0 || GraftedWoodsR.currentHealth > 0)
         {
             if (GraftedWoodsL.currentHealth > 100 && GraftedWoodsR.currentHealth > 100)
             {
