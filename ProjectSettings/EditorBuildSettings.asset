@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DeathScreen.unity
     guid: 2ff2a0051c5a47c4ea2006d97205e6ab
   - enabled: 1
+    path: Assets/Scenes/Phase2DeathScene.unity
+    guid: 0342e2c3f7f07c748bcc41033b088373
+  - enabled: 1
     path: Assets/Scenes/WhispyDeathScene.unity
     guid: 8adcd333a79a9434183361a3b867e489
   m_configObjects: {}
