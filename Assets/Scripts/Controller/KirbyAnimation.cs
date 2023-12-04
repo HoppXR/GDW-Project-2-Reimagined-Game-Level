@@ -83,7 +83,7 @@ public class KirbyAnimation : MonoBehaviour
     }
     void InhaleAni()
     {
-        if (IsGrounded() && Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             animator.SetBool("IsInhaling", true);
 
@@ -99,5 +99,42 @@ public class KirbyAnimation : MonoBehaviour
     void Inhaling()
     {
         animator.SetBool("Inhaling", true);
+    }
+
+    public void Inhaled()
+    {
+        animator.SetBool("Inhaled", true);
+    }
+
+    public void Spitting()
+    {
+        animator.SetBool("IsSpitting", true);
+        
+        animator.SetBool("Inhaled", false);
+    }
+
+    public void EndSpitting()
+    {
+        animator.SetBool("IsSpitting", false);
+    }
+
+    public void Damaged()
+    {
+        animator.SetTrigger("Damaged");
+    }
+    
+    public void BigDamaged()
+    {
+        animator.SetTrigger("BigDamaged");
+    }
+
+    public void TakeDamage()
+    {
+        animator.SetBool("IsDamaged", true);
+    }
+
+    public void Recovery()
+    {
+        animator.SetBool("IsDamaged", false);
     }
 }

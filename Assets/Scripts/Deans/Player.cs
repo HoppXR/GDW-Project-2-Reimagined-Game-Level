@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    KirbyAnimation kirbyAnimation;
+    
     Rigidbody2D rb;
 
     [SerializeField] private float speed;
     private Vector2 _moveDirection;
+    public float horizontalMove;
 
     public float crouch = 5f;
     public float jumpForce = 5f;
@@ -29,6 +32,7 @@ public class Player : MonoBehaviour
     private bool isMovementEnabled = true;
     private float currentHealth;
     private bool isTakingDamage = false;
+    private bool canDamage = true;
     private bool isBlocking = false;
     private float damageReductionMultiplier = 0.5f;
 
@@ -75,6 +79,7 @@ public class Player : MonoBehaviour
         InputManager.Init(this);
         InputManager.SetGameControls();
         rb = GetComponent<Rigidbody2D>();
+        kirbyAnimation = GetComponent<KirbyAnimation>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         _moveDirection = Vector2.zero;
 
@@ -98,6 +103,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        horizontalMove = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
 
         if (isMovementEnabled)
@@ -195,6 +201,18 @@ public class Player : MonoBehaviour
         isJumping = false;
     }
 
+    private IEnumerator DamageAnimation()
+    {
+        yield return new WaitForSeconds(0.75f);
+        kirbyAnimation.Recovery();
+    }
+
+    private IEnumerator SpittingAnimation()
+    {
+        yield return new WaitForSeconds(0.33f);
+        kirbyAnimation.EndSpitting();
+    }
+
     public void PlayerCrouch()
     {
         if (!isCrouch)
@@ -218,30 +236,46 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (isTakingDamage || isBlocking)
-        {
-            damage *= damageReductionMultiplier;
-        }
+        kirbyAnimation.TakeDamage();
 
         isTakingDamage = true;
 
-        currentHealth -= damage;
-
-        currentHealth = Mathf.Max(currentHealth, 0f);
-
-        rb.velocity = new Vector2(-Mathf.Sign(_moveDirection.x) * pushForce, rb.velocity.y);
-
-        PerformJump(jumpForce);
-
-        if (currentHealth <= 0f)
+        float blockDamage;
+        
+        if (canDamage)
         {
-            Die();
-        }
+            if (!isBlocking && isTakingDamage)
+            {
+                currentHealth -= damage;
+            
+                //rb.velocity = new Vector2(-Mathf.Sign(_moveDirection.x) * pushForce, rb.velocity.y);
+                //PerformJump(jumpForce);
+            }
+            else if (isBlocking && isTakingDamage)
+            {
+                blockDamage = damage * damageReductionMultiplier;
 
-        if (hurtSounds.Length > 0)
-        {
-            AudioClip randomHurtSound = GetRandomUniqueHurtSound();
-            if (randomHurtSound != null) AudioSource.PlayClipAtPoint(randomHurtSound, transform.position);
+                currentHealth -= blockDamage;
+            }
+
+            kirbyAnimation.Damaged();
+            kirbyAnimation.BigDamaged();
+
+            StartCoroutine(DamageAnimation());
+            StartCoroutine(EnableMovementAfterDelay());
+
+            currentHealth = Mathf.Max(currentHealth, 0f);
+
+            if (currentHealth <= 0f)
+            {
+                Die();
+            }
+
+            if (hurtSounds.Length > 0)
+            {
+                AudioClip randomHurtSound = GetRandomUniqueHurtSound();
+                if (randomHurtSound != null) AudioSource.PlayClipAtPoint(randomHurtSound, transform.position);
+            }
         }
     }
 
@@ -264,12 +298,16 @@ public class Player : MonoBehaviour
         return randomHurtSound;
     }
 
-    private IEnumerator EnableMovementAfterDelay(float delay)
+    private IEnumerator EnableMovementAfterDelay()
     {
-        yield return new WaitForSeconds(delay);
+        canDamage = false;
 
         isTakingDamage = false;
         _moveDirection = Vector2.zero;
+
+        yield return new WaitForSeconds(0.75f);
+
+        canDamage = true;
     }
 
     public void PerformJump(float jumpForce)
@@ -279,11 +317,10 @@ public class Player : MonoBehaviour
 
     public void ToggleBlock()
     {
-        isBlocking = !isBlocking;
+        isBlocking = true;
 
         if (isBlocking)
         {
-
             if (blockSoundClip != null) AudioSource.PlayClipAtPoint(blockSoundClip, transform.position);
         }
     }
@@ -352,7 +389,7 @@ public class Player : MonoBehaviour
 
                     hasInhaled = true;
 
-                    break;
+                    kirbyAnimation.Inhaled();
                 }
             }
 
@@ -369,13 +406,12 @@ public class Player : MonoBehaviour
         {
             inhaleAudioSource.Stop();
         }
-
     }
 
     public void SpitOut()
     {
         if (inhaledObject != null && hasInhaled)
-        {
+        {   
             if (exhaleSoundClip != null) AudioSource.PlayClipAtPoint(exhaleSoundClip, transform.position);
 
             GameObject newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
@@ -387,7 +423,7 @@ public class Player : MonoBehaviour
             {
                 spriteRenderer.enabled = true;
             }
-
+            
             Vector2 spitDirection = transform.right * (transform.localScale.x > 0 ? 1 : -1);
 
             projectileRb.velocity = spitDirection * spitOutSpeed;
@@ -399,12 +435,15 @@ public class Player : MonoBehaviour
             hasInhaled = false;
 
             isMovementEnabled = true;
+
+            kirbyAnimation.Spitting();
+            StartCoroutine(SpittingAnimation());
         }
     }
 
     private void PlayMoveSound()
     {
-        if (!audioPlayer.isPlaying || audioPlayer.clip != moveSoundClip)
+        if (!audioPlayer.isPlaying && audioPlayer.clip != moveSoundClip)
         {
             audioPlayer.Stop();
             audioPlayer.clip = moveSoundClip;
@@ -423,7 +462,7 @@ public class Player : MonoBehaviour
 
     private void PlaySprintSound()
     {
-        if (!audioPlayer.isPlaying || audioPlayer.clip != sprintSoundClip)
+        if (!audioPlayer.isPlaying && audioPlayer.clip != sprintSoundClip)
         {
             audioPlayer.Stop();
             audioPlayer.clip = sprintSoundClip;
