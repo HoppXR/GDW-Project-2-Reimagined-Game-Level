@@ -266,11 +266,11 @@ public class TreeAttacks : MonoBehaviour
     {
         PlaySound(trunkAttackSound);
 
-        Rigidbody2D trunkObject = Instantiate(TrunkPrefab, new Vector3(-41.9516f, -15f, 0f), Quaternion.identity);
+        Rigidbody2D trunkObject = Instantiate(TrunkPrefab, new Vector3(-41.92161f, -17.68358f, 0f), Quaternion.identity);
 
         Rigidbody2D trunkRigidbody = trunkObject.GetComponent<Rigidbody2D>();
 
-        StartCoroutine(MoveTrunk(trunkRigidbody, new Vector3(8.64f, -15f, 0f), 5));
+        StartCoroutine(MoveTrunk(trunkRigidbody, new Vector3(8.76f, -17.68358f, 0f), 5));
         Destroy(trunkObject.gameObject, 3);
     }
 
