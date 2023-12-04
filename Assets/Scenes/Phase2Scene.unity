@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  maxHealth: 200
+  maxHealth: 300
   currentHealth: 0
   enemyID: 
   defeatedSprite: {fileID: 0}
@@ -3520,7 +3520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  maxHealth: 200
+  maxHealth: 300
   currentHealth: 0
   enemyID: 
   defeatedSprite: {fileID: 0}
@@ -4232,6 +4232,7 @@ MonoBehaviour:
   AirFacingRightPrefab: {fileID: 845861923058826120, guid: 9bc2db5e6d5ec9e4da203be768496880, type: 3}
   AirFacingLeftPrefab: {fileID: 845861923058826120, guid: 1864b6ea13136344bae5541dd949cbac, type: 3}
   TrunkPrefab: {fileID: 3555875367796436246, guid: bd442f9a16d249f4c98d9e7ce5046c20, type: 3}
+  TrunkPrefab1: {fileID: 3053993881116914335, guid: 93d528d779072294e9268367cdfb52f4, type: 3}
   P2TreeSpinDropStuffAmount: 15
   P2TreeDropStuffAmount: 6
   TreePrefab: {fileID: 8354283180352177149, guid: 6897b1b5ba6bf8044a020724d8edfafd, type: 3}

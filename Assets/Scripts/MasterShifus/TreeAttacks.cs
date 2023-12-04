@@ -37,6 +37,7 @@ public class TreeAttacks : MonoBehaviour
     [SerializeField] private Rigidbody2D AirFacingRightPrefab;
     [SerializeField] private Rigidbody2D AirFacingLeftPrefab;
     [SerializeField] private Rigidbody2D TrunkPrefab;
+    [SerializeField] private Rigidbody2D TrunkPrefab1;
     private Rigidbody2D fallingObject;
 
     private AudioSource audioSource;
@@ -108,7 +109,7 @@ public class TreeAttacks : MonoBehaviour
 
             if (AirProjectiles != null)
             {
-                float randomAngle = UnityEngine.Random.Range(-30f, 30f);
+                float randomAngle = Random.Range(-30f, 30f);
                 Vector2 direction = Quaternion.Euler(0f, 0f, randomAngle) * Vector2.right;
                 direction.Normalize();
                 AirProjectiles.AddForce(AirTravelSpeed * direction, ForceMode2D.Impulse);
@@ -145,15 +146,15 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < TreeDropStuffAmount; i++)
         {
-            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f
+            GameObject prefabToSpawn = Random.Range(0f, 1f) < 0.65f
                 ? LeftTreeApplePrefab.gameObject
                 : LeftTreeSpikePrefab.gameObject;
-            float randomX = UnityEngine.Random.Range(-37f, -32.9f);
-            float randomY = UnityEngine.Random.Range(5.5f, 8f);
-            float randomX2 = UnityEngine.Random.Range(-26.6f, -20.24f);
+            float randomX = Random.Range(-37f, -32.9f);
+            float randomY = Random.Range(5.5f, 8f);
+            float randomX2 = Random.Range(-26.6f, -20.24f);
             Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
             Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-            if (UnityEngine.Random.Range(0, 2) == 0)
+            if (Random.Range(0, 2) == 0)
             {
                 pickedPosition = randomPosition;
             }
@@ -177,15 +178,15 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < TreeDropStuffAmount; i++)
         {
-            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.65f
+            GameObject prefabToSpawn = Random.Range(0f, 1f) < 0.65f
                 ? RightTreeApplePrefab.gameObject
                 : RightTreeSpikePrefab.gameObject;
-            float randomX = UnityEngine.Random.Range(0f, 4f);
-            float randomY = UnityEngine.Random.Range(5.5f, 8f);
-            float randomX2 = UnityEngine.Random.Range(-13f, -6f);
+            float randomX = Random.Range(0f, 4f);
+            float randomY = Random.Range(5.5f, 8f);
+            float randomX2 = Random.Range(-13f, -6f);
             Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
             Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-            if (UnityEngine.Random.Range(0, 2) == 0)
+            if (Random.Range(0, 2) == 0)
             {
                 pickedPosition = randomPosition;
             }
@@ -209,20 +210,20 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < TreeSpinDropStuffAmount; i++)
         {
-            int leftOrRight = UnityEngine.Random.Range(1, 3);
+            int leftOrRight = Random.Range(1, 3);
 
             GameObject prefabToSpawn;
             if (leftOrRight == 1) // Left
             {
-                prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f
+                prefabToSpawn = Random.Range(0f, 1f) < 0.3f
                     ? LeftTreeApplePrefab.gameObject
                     : LeftWormSpikePrefab.gameObject;
-                float randomX = UnityEngine.Random.Range(-37f, -32.9f);
-                float randomY = UnityEngine.Random.Range(5.5f, 8f);
-                float randomX2 = UnityEngine.Random.Range(-26.6f, -20.24f);
+                float randomX = Random.Range(-37f, -32.9f);
+                float randomY = Random.Range(5.5f, 8f);
+                float randomX2 = Random.Range(-26.6f, -20.24f);
                 Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
                 Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-                if (UnityEngine.Random.Range(0, 2) == 0)
+                if (Random.Range(0, 2) == 0)
                 {
                     pickedPosition = randomPosition;
                 }
@@ -237,15 +238,15 @@ public class TreeAttacks : MonoBehaviour
 
             if (leftOrRight == 2) // Right
             {
-                prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f
+                prefabToSpawn = Random.Range(0f, 1f) < 0.3f
                     ? RightTreeApplePrefab.gameObject
                     : RightWormSpikePrefab.gameObject;
-                float randomX = UnityEngine.Random.Range(0f, 4f);
-                float randomY = UnityEngine.Random.Range(5.5f, 8f);
-                float randomX2 = UnityEngine.Random.Range(-13f, -6f);
+                float randomX = Random.Range(0f, 4f);
+                float randomY = Random.Range(5.5f, 8f);
+                float randomX2 = Random.Range(-13f, -6f);
                 Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
                 Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-                if (UnityEngine.Random.Range(0, 2) == 0)
+                if (Random.Range(0, 2) == 0)
                 {
                     pickedPosition = randomPosition;
                 }
@@ -305,7 +306,7 @@ public class TreeAttacks : MonoBehaviour
         Destroy(Danger2.gameObject, 1);
         Destroy(Danger3.gameObject, 1);
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         
         //woosh sound here
         Rigidbody2D rootObject1 = Instantiate(RootPrefab, new Vector3(-30.3f, -40.35f, 0f), Quaternion.identity);
@@ -339,7 +340,7 @@ public class TreeAttacks : MonoBehaviour
         Destroy(Danger4.gameObject, 1);
         Destroy(Danger5.gameObject, 1);
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         
         
         //woosh sound here
@@ -356,7 +357,7 @@ public class TreeAttacks : MonoBehaviour
         Destroy(rootObject4.gameObject, 3);
         Destroy(rootObject5.gameObject, 3);
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
     }
 
 
@@ -432,16 +433,16 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < P2TreeDropStuffAmount; i++)
         {
-            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.50f
+            GameObject prefabToSpawn = Random.Range(0f, 1f) < 0.50f
                 ? LeftTreeApplePrefab.gameObject
                 : AngrySpikeL.gameObject;
-            float randomX = UnityEngine.Random.Range(-37.46f, -25.02f);
+            float randomX = Random.Range(-37.46f, -25.02f);
             Vector3 randomPosition = new Vector3(randomX, 11.52f, 0f);
             GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
             fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             PlaySound(dropObjectSound);
-
-            yield return new WaitForSeconds(1.2f);
+            
+            yield return new WaitForSeconds(.5f);
         }
     }
     
@@ -451,10 +452,10 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < P2TreeDropStuffAmount; i++)
         {
-            GameObject prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.50f
+            GameObject prefabToSpawn = Random.Range(0f, 1f) < 0.50f
                 ? RightTreeApplePrefab.gameObject
                 : AngrySpikeR.gameObject;
-            float randomX = UnityEngine.Random.Range(-13.68f, 1f);
+            float randomX = Random.Range(-13.68f, 1f);
             Vector3 randomPosition = new Vector3(randomX, 11.52f, 0f);
 
             GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
@@ -462,7 +463,7 @@ public class TreeAttacks : MonoBehaviour
 
             PlaySound(dropObjectSound);
 
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(.5f);
         }
     }
     
@@ -472,56 +473,72 @@ public class TreeAttacks : MonoBehaviour
 
         for (int i = 0; i < P2TreeSpinDropStuffAmount; i++)
         {
-            int leftOrRight = UnityEngine.Random.Range(1, 3);
+            int leftOrRight = Random.Range(1, 3);
 
             GameObject prefabToSpawn;
             if (leftOrRight == 1) // Left
             {
-                prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f
-                    ? LeftTreeApplePrefab.gameObject
+                prefabToSpawn = Random.Range(0f, 1f) < 0.3f
+                    ? AngrySpikeL.gameObject
                     : AngryWormL.gameObject;
-                float randomX = UnityEngine.Random.Range(-37f, -32.9f);
-                float randomY = UnityEngine.Random.Range(5.5f, 8f);
-                float randomX2 = UnityEngine.Random.Range(-26.6f, -20.24f);
-                Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-                Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-                if (UnityEngine.Random.Range(0, 2) == 0)
-                {
-                    pickedPosition = randomPosition;
-                }
-                else
-                {
-                    pickedPosition = randomPosition2;
-                }
-
-                GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
+                float randomX = Random.Range(-37.46f, -25.02f);
+                Vector3 randomPosition = new Vector3(randomX, 11.52f, 0f);
+                GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
                 fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             }
 
             if (leftOrRight == 2) // Right
             {
-                prefabToSpawn = UnityEngine.Random.Range(0f, 1f) < 0.3f
-                    ? RightTreeApplePrefab.gameObject
+                prefabToSpawn = Random.Range(0f, 1f) < 0.3f
+                    ? AngrySpikeR.gameObject
                     : AngryWormR.gameObject;
-                float randomX = UnityEngine.Random.Range(0f, 4f);
-                float randomY = UnityEngine.Random.Range(5.5f, 8f);
-                float randomX2 = UnityEngine.Random.Range(-13f, -6f);
-                Vector3 randomPosition = new Vector3(randomX, randomY, 0f);
-                Vector3 randomPosition2 = new Vector3(randomX2, 9.85f, 0f);
-                if (UnityEngine.Random.Range(0, 2) == 0)
-                {
-                    pickedPosition = randomPosition;
-                }
-                else
-                {
-                    pickedPosition = randomPosition2;
-                }
-
-                GameObject instantiatedObject = Instantiate(prefabToSpawn, pickedPosition, Quaternion.identity);
+                float randomX = Random.Range(-13.68f, 1f);
+                Vector3 randomPosition = new Vector3(randomX, 11.52f, 0f);
+                GameObject instantiatedObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
                 fallingObject = instantiatedObject.GetComponent<Rigidbody2D>();
             }
+            yield return new WaitForSeconds(0.4f);
+        }
+    }
+    
+    
+    public void Phase2TrunkAttack() // Attack last 1.70 secs
+    {
+        PlaySound(trunkAttackSound);
 
-            yield return new WaitForSeconds(0.9f);
+        Rigidbody2D trunkObject1= Instantiate(TrunkPrefab1, new Vector3(-61f, 8.2f, 0f), Quaternion.identity);
+        Rigidbody2D trunkObject2 = Instantiate(TrunkPrefab1, new Vector3(-61f, 2f, 0f), Quaternion.identity);
+        Rigidbody2D trunkObject3 = Instantiate(TrunkPrefab1, new Vector3(-61f, -5.8f, 0f), Quaternion.identity);
+        
+        Rigidbody2D trunkRigidbody1 = trunkObject1.GetComponent<Rigidbody2D>();
+        Rigidbody2D trunkRigidbody2 = trunkObject2.GetComponent<Rigidbody2D>();
+        Rigidbody2D trunkRigidbody3 = trunkObject3.GetComponent<Rigidbody2D>();
+
+        StartCoroutine(P2MoveTrunk(trunkRigidbody1, new Vector3(30.9f, 8.2f, 0f), 4));
+        StartCoroutine(P2MoveTrunk(trunkRigidbody2, new Vector3(30.9f, 2f, 0f), 4));
+        StartCoroutine(P2MoveTrunk(trunkRigidbody3, new Vector3(30.9f, -5.8f, 0f), 4));
+        
+        Destroy(trunkObject1.gameObject, 3);
+        Destroy(trunkObject2.gameObject, 3);
+        Destroy(trunkObject3.gameObject, 3);
+    }
+
+    public IEnumerator P2MoveTrunk(Rigidbody2D trunkRigidbody, Vector3 targetPosition, float duration)
+    {
+        float elapsed_time = 0f;
+        Vector3 initialPosition = trunkRigidbody.position;
+
+        while (elapsed_time < duration && trunkRigidbody != null)
+        {
+            trunkRigidbody.position =
+                Vector3.MoveTowards(initialPosition, targetPosition, (elapsed_time / duration) * trunkMoveSpeed);
+            elapsed_time += Time.deltaTime;
+            yield return null;
+        }
+
+        if (trunkRigidbody != null)
+        {
+            trunkRigidbody.position = targetPosition;
         }
     }
     

@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27fdc18b43dcb94c9670ddcc89f4dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 5
   bounceForce: 5
   playerJumpForce: 5
   playerInvulnerabilityTime: 1
