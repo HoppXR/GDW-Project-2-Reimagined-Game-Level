@@ -81,6 +81,11 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        if (isDefeated)
+        {
+            return; 
+        }
+
         isDefeated = true;
 
         defeatedEnemiesCount++;
@@ -102,11 +107,19 @@ public class Enemy : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Phase2Scene" && defeatedEnemiesCount >= 2)
         {
+            ResetDefeatedEnemiesCount();
             SceneManager.LoadScene("WhispyDeathScene");
         }
         else if (SceneManager.GetActiveScene().name == "GameScene" && defeatedEnemiesCount >= 2)
         {
+            ResetDefeatedEnemiesCount();
             SceneManager.LoadScene("Phase2Cutscene");
         }
     }
+
+    private void ResetDefeatedEnemiesCount()
+    {
+        defeatedEnemiesCount = 0;
+    }
+
 }

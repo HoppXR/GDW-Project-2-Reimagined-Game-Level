@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Image healthBar;
 
     public static bool isRunning;
+    private static bool isPhase2 = false;
 
     bool isGrounded;
     bool isCrouch;
@@ -81,6 +82,11 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         kirbyAnimation = GetComponent<KirbyAnimation>();
         _moveDirection = Vector2.zero;
+
+        if (SceneManager.GetActiveScene().name == "Phase2Scene")
+        {
+            isPhase2 = true;
+        }
 
         currentHealth = maxHealth;
 
@@ -361,6 +367,11 @@ public class Player : MonoBehaviour
         return maxHealth;
     }
 
+    public static void SetPhase2State(bool isPhase2State)
+    {
+        isPhase2 = isPhase2State;
+    }
+
     private void Die()
     {
         if (deathSoundClip != null)
@@ -368,18 +379,14 @@ public class Player : MonoBehaviour
             deathAudioSource.Play();
         }
 
-
-        SceneManager.LoadScene("DeathScreen");
-
-        StartCoroutine(LoadTitleScreenAfterDelay());
-    }
-
-    private IEnumerator LoadTitleScreenAfterDelay()
-    {
-
-        yield return new WaitForSeconds(2f);
-
-        SceneManager.LoadScene("ContinueScreen");
+        if (isPhase2)
+        {
+            SceneManager.LoadScene("Phase2DeathScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("DeathScreen");
+        }
     }
 
     public void Inhale()
