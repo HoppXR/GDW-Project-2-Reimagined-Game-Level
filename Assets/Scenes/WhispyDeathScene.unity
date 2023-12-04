@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45af88fd48b7b694ba7d21763a227b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTime: 29
+  changeTime: 29.5
   sceneName: TitleScreen
 --- !u!4 &411389804
 Transform:
