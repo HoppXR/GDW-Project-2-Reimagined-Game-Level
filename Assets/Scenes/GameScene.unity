@@ -426,7 +426,7 @@ MonoBehaviour:
   maxHealth: 60
   currentHealth: 0
   enemyID: WhispyR
-  defeatedSprite: {fileID: 21300000, guid: 8f8eea7b8e5a5dd4b84e491b04cee035, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: 40d3efda16beb544fb92a1f9e7884fe1, type: 3}
   defeatParticles: {fileID: 0}
   defeatSound: {fileID: 8300000, guid: 5dd53fa57544d9c4e8591d0f39a4b4a6, type: 3}
   damageSound: {fileID: 0}
@@ -536,8 +536,8 @@ Transform:
   m_GameObject: {fileID: 184630562}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0074447077, z: -0, w: 0.9999723}
-  m_LocalPosition: {x: 8.3, y: -2.9652, z: -1.9}
-  m_LocalScale: {x: 8.949426, y: 12.996058, z: 8.949426}
+  m_LocalPosition: {x: 8.3, y: -3.7378, z: -1.9}
+  m_LocalScale: {x: 8.949426, y: 13.686149, z: 8.949426}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   maxHealth: 60
   currentHealth: 0
   enemyID: WhispyL
-  defeatedSprite: {fileID: 21300000, guid: 8f8eea7b8e5a5dd4b84e491b04cee035, type: 3}
+  defeatedSprite: {fileID: 21300000, guid: 7d452953225d5394398bb6797eb0bfb0, type: 3}
   defeatParticles: {fileID: 0}
   defeatSound: {fileID: 8300000, guid: 5dd53fa57544d9c4e8591d0f39a4b4a6, type: 3}
   damageSound: {fileID: 0}
@@ -1682,8 +1682,8 @@ Transform:
   m_GameObject: {fileID: 560672285}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.99852335, z: -0, w: 0.054324485}
-  m_LocalPosition: {x: -41.6, y: -2.8832, z: -2.4}
-  m_LocalScale: {x: 8.949426, y: 13.069573, z: 8.949426}
+  m_LocalPosition: {x: -41.6, y: -3.7513, z: -2.4}
+  m_LocalScale: {x: 8.949426, y: 13.844002, z: 8.949426}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2039,7 +2039,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eab660838e8f7a545b9724ff3abf0f85, type: 3}
   m_Color: {r: 0.35445586, g: 0.806278, b: 0.9716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2059,8 +2059,8 @@ Transform:
   m_GameObject: {fileID: 688034472}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.9874, y: -6.1932, z: 0}
-  m_LocalScale: {x: 73.368355, y: 35.649837, z: 2.0741105}
+  m_LocalPosition: {x: 12.0499, y: -8.7144, z: 0}
+  m_LocalScale: {x: 1.367064, y: 1.0893799, z: 0.055743054}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3104,7 +3104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.20363113, g: 0.6226415, b: 0.31935713, a: 1}
   m_FlipX: 0
@@ -3125,8 +3125,8 @@ Transform:
   m_GameObject: {fileID: 1541309120}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.9924, y: -23.3961, z: 0}
-  m_LocalScale: {x: 73.3525, y: 12.526686, z: 2.0687318}
+  m_LocalPosition: {x: -16.9924, y: -24.3925, z: 0}
+  m_LocalScale: {x: 73.3525, y: 10.53369, z: 2.0687318}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3703,7 +3703,7 @@ Transform:
   m_GameObject: {fileID: 1785051746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.0014199372, z: -0, w: 0.99999905}
-  m_LocalPosition: {x: -16.24, y: -16.15, z: 0.016362}
+  m_LocalPosition: {x: -16.24, y: -17.94, z: 0.016362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
